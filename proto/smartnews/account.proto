@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+message Account {
+  optional string accountId = 1 ; // "1000000"
+  optional string name      = 2 ; // "SmartNews, Inc"
+}
+
+message AccountArray {
+  repeated Account array = 1;
+}

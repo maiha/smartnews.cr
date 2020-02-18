@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  static:
+    build: ./docker/
+    command: shards build --link-flags "-static"
+    user: "${UID}:${GID}"
+    volumes:
+      - .:/v
+      - ./libcurl.a:/usr/lib/libcurl.a
+    working_dir: /v

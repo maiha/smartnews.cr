@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+message Insight {
+  optional string accountId           = 1  ; // "1000000"
+  optional string campaignId          = 2  ; // "1000003"
+  optional string creativeId          = 3  ; // "1000013"
+  optional string accountName         = 4  ; // "SmartNews, Inc"
+  optional string campaignName        = 5  ; // "SmartNews Installs 7/12"
+  optional string creativeName        = 6  ; // "label for creative management"
+  optional int64  impressions         = 7  ; // 13204
+  optional int64  viewableImpressions = 8  ; // 10444
+  optional int64  clicks              = 9  ; // 48
+  optional int64  conversions         = 10 ; // 3
+  optional double spend               = 11 ; // 1052.5128
+  optional double cpm                 = 12 ; // 100.77678752999999
+  optional double cpc                 = 13 ; // 21.92734935
+  optional double ctr                 = 14 ; // 0.36353
+  optional double vctr                = 15 ; // 0.45959
+  optional double cvr                 = 16 ; // 6.25
+  optional double cpa                 = 17 ; // 350.83758967
+}
+
+message InsightArray {
+  repeated Insight array = 1;
+}

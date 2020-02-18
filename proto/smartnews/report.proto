@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+message Report {
+  required string date                = 1  ; // "2019-12-31"
+  optional string accountId           = 2  ; // "1000000"
+  optional string campaignId          = 3  ; // "1000003"
+  optional string creativeId          = 4  ; // "1000013"
+  optional string accountName         = 5  ; // "SmartNews, Inc"
+  optional string campaignName        = 6  ; // "SmartNews Installs 7/12"
+  optional string creativeName        = 7  ; // "label for creative management"
+  optional int64  impressions         = 8  ; // 13204
+  optional int64  viewableImpressions = 9  ; // 10444
+  optional int64  clicks              = 10 ; // 48
+  optional int64  conversions         = 11 ; // 3
+  optional double spend               = 12 ; // 1052.5128
+  optional double cpm                 = 13 ; // 100.77678752999999
+  optional double cpc                 = 14 ; // 21.92734935
+  optional double ctr                 = 15 ; // 0.36353
+  optional double vctr                = 16 ; // 0.45959
+  optional double cvr                 = 17 ; // 6.25
+  optional double cpa                 = 18 ; // 350.83758967
+}
+
+message ReportArray {
+  repeated Report array = 1;
+}

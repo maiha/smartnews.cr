@@ -1,0 +1,19 @@
+{
+  "accountId": "1000000",
+  "campaignId": "1000003",
+  "creativeId": "1000013",
+  "accountName": "SmartNews, Inc",
+  "campaignName": "SmartNews Installs 7/12",
+  "creativeName": "label for creative management",
+  "impressions": 13204,
+  "viewableImpressions": 10444,
+  "clicks": 48,
+  "conversions": 3,
+  "spend": 1052.5128,
+  "cpm": 100.77678753,
+  "cpc": 21.92734935,
+  "ctr": 0.36353,
+  "vctr": 0.45959,
+  "cvr": 6.25,
+  "cpa": 350.83758967
+}
