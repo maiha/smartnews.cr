@@ -37,5 +37,5 @@ $ make test
 ### build
 
 ```console
-$ make release
+$ make smartnews
 ```
