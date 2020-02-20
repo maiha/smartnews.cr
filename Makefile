@@ -1,76 +1,39 @@
 SHELL=/bin/bash
 
-WARNINGS := none
+.SHELLFLAGS = -o pipefail -c
 
+all: smartnews-dev
+
+######################################################################
+### compiling
+
+# for mounting permissions in docker-compose
 export UID = $(shell id -u)
 export GID = $(shell id -g)
 
-VERSION=
-CURRENT_VERSION=$(shell git tag -l | sort -V | tail -1)
-GUESSED_VERSION=$(shell git tag -l | sort -V | tail -1 | awk 'BEGIN { FS="." } { $$3++; } { printf "%d.%d.%d", $$1, $$2, $$3 }')
+COMPILE_FLAGS=
+LINK_FLAGS=--link-flags "-static -lcurl -lnghttp2 -lidn2 -lssl -lcrypto -lz"
+BUILD_TARGET=
 
-.SHELLFLAGS = -o pipefail -c
-
-JSON2SCHEMA ?= bin/smartnews-dev
-
-BUILD  := docker-compose run --rm static shards build --link-flags "-static /v/libcurl.a"
-DOCKER_IMAGE := crystallang/crystal:0.33.0
-
-all: smartnews-dev
-release: release/smartnews
+.PHONY: build
+build:
+	@docker-compose run --rm alpine shards build  $(COMPILE_FLAGS) $(LINK_FLAGS) $(BUILD_TARGET) $(O)
 
 .PHONY: smartnews-dev
-smartnews-dev:
-	shards build $@
+smartnews-dev: BUILD_TARGET=smartnews-dev
+smartnews-dev: build
 
 .PHONY: smartnews
-smartnews:
-	shards build $@ --release
-
-.PHONY: release/smartnews
-release/smartnews:
-	@mkdir -p $(dir $@)
-	$(BUILD) $(notdir $@) --release $(0)
-	@cp -p bin/$(notdir $@) $@
-
-.PHONY: release/smartnews-dev
-release/smartnews-dev:
-	@mkdir -p $(dir $@)
-	$(BUILD) $(notdir $@) $(0)
-	@cp -p bin/$(notdir $@) $@
-
-.PHONY: static
-static:
-	@shards build --link-flags "-static /v/libcurl.a"
+smartnews: BUILD_TARGET=smartnews
+smartnews: COMPILE_FLAGS=--release
+smartnews: build
 
 .PHONY: console
 console:
-	docker run --rm -it -v $(PWD):/v -w /v -u "$(UID):$(GID)" $(DOCKER_IMAGE) bash
+	@docker-compose run --rm alpine sh
 
-JSONS   ?= $(wildcard json/smartnews/*.json)
-PROTOS  ?= $(subst json,proto,$(JSONS))
-CONVERTERS ?= $(addsuffix .cr,$(addprefix src/smartnews/converter/,$(basename $(notdir $(wildcard proto/smartnews/*.proto)))))
-
-.PHONY: gen
-gen: proto converter
-
-.PHONY: converter
-converter: $(CONVERTERS)
-
-src/smartnews/converter/%.cr:proto/smartnews/%.proto $(JSON2SCHEMA)
-	@if ! which "$(JSON2SCHEMA)" > /dev/null ; then echo "JSON2SCHEMA not set"; exit 1; fi
-	$(JSON2SCHEMA) pb schema2converter $< "Smartnews::" > $@
-
-proto/smartnews/%.proto:json/smartnews/%.json
-	@if ! which "$(JSON2SCHEMA)" > /dev/null ; then echo "JSON2SCHEMA not set"; exit 1; fi
-	$(JSON2SCHEMA) pb json2schema $< > $@
-
-.PHONY: proto
-proto: $(PROTOS)
-	@mkdir -p src/proto
-	protoc -I proto --crystal_out src/proto proto/*.proto
-	@mkdir -p src/smartnews/proto
-	PROTOBUF_NS=Smartnews::Proto protoc -I proto -I proto/smartnews --crystal_out src/smartnews/proto proto/smartnews/*.proto
+######################################################################
+### testing
 
 .PHONY: ci
 ci: test smartnews
@@ -85,6 +48,41 @@ spec:
 .PHONY : check_version_mismatch
 check_version_mismatch: README.cr.md shard.yml 
 	diff -w -c <(grep version: $<) <(grep ^version: shard.yml)
+
+######################################################################
+### generating
+
+GENERATOR  ?= bin/smartnews-dev
+JSON_FILES ?= $(wildcard json/smartnews/*.json)
+CONVERTERS ?= $(addsuffix .cr,$(addprefix src/smartnews/converter/,$(basename $(notdir $(wildcard proto/smartnews/*.proto)))))
+
+.PHONY: gen
+gen: proto converter
+
+.PHONY: converter
+converter: $(CONVERTERS)
+
+src/smartnews/converter/%.cr:proto/smartnews/%.proto $(GENERATOR)
+	@if ! which "$(GENERATOR)" > /dev/null ; then echo "GENERATOR not set"; exit 1; fi
+	$(GENERATOR) pb schema2converter $< "Smartnews::" > $@
+
+proto/smartnews/%.proto:json/smartnews/%.json
+	@if ! which "$(GENERATOR)" > /dev/null ; then echo "GENERATOR not set"; exit 1; fi
+	$(GENERATOR) pb json2schema $< > $@
+
+.PHONY: proto
+proto: $(subst json,proto,$(JSON_FILES))
+	@mkdir -p src/proto
+	protoc -I proto --crystal_out src/proto proto/*.proto
+	@mkdir -p src/smartnews/proto
+	PROTOBUF_NS=Smartnews::Proto protoc -I proto -I proto/smartnews --crystal_out src/smartnews/proto proto/smartnews/*.proto
+
+######################################################################
+### versioning
+
+VERSION=
+CURRENT_VERSION=$(shell git tag -l | sort -V | tail -1)
+GUESSED_VERSION=$(shell git tag -l | sort -V | tail -1 | awk 'BEGIN { FS="." } { $$3++; } { printf "%d.%d.%d", $$1, $$2, $$3 }')
 
 .PHONY : version
 version:

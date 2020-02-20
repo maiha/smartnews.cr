@@ -6,4 +6,4 @@ addons:
       - libcurl4-openssl-dev
       - libidn2-0-dev
 script:
-  - make ci
+  - make test

@@ -4,8 +4,11 @@ class Cli::Main
   include Opts
   include GlobalHelper
 
-  CONFIG_FILE   = ".smartnewsrc"
-  
+  CONFIG_FILE = ".smartnewsrc"
+  {% begin %}
+  TARGET_TRIPLE = "{{`crystal -v | grep x86_64 | cut -d: -f2`.strip}}"
+  {% end %}
+
   USAGE = <<-EOF
     usage: {{program}} [options] <commands>
 
@@ -13,15 +16,15 @@ class Cli::Main
     {{options}}
 
     commands:
-      #{Cmds.names.inspect}
+      #{Cmds.names.sort.join(", ")}
     EOF
 
   option config_path  : String?, "-K <config>", "Smartnews config file (default: '~/.smartnewsrc')", nil
 
   option pass    : String?, "-a <access_token>", "Specify the access token for api account", nil
-  option fields  : String?, "-f <fields>", "Select only these fields", nil
-  option limit   : Int32?, "-l <limit>", "Select only first limit records", nil
-  option format  : String?, "-F <format>", "Specify format", nil
+  option fields  : String?, "-f <fields>", "[pb] Select only these fields", nil
+  option limit   : Int32?, "-l <limit>", "[pb] Select only first limit records", nil
+  option format  : String?, "-F <format>", "[pb] Specify format", nil
   option dryrun  : Bool  , "-n", "Dryrun mode", false
   option verbose : Bool  , "-v", "Verbose output", false
   option nocolor : Bool  , "-C", "Disable colored output", false
@@ -129,6 +132,10 @@ class Cli::Main
       STDERR.puts red(Pretty.error(err).where.to_s) # This may kill app
       exit 255
     end
+  end
+
+  def show_version
+    "#{PROGRAM} #{VERSION} #{TARGET_TRIPLE} crystal-#{Crystal::VERSION} #{String.new(LibCurl.curl_version)}"
   end
 end
 
