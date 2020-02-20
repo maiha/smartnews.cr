@@ -13,7 +13,8 @@ GUESSED_VERSION=$(shell git tag -l | sort -V | tail -1 | awk 'BEGIN { FS="." } {
 
 JSON2SCHEMA ?= bin/smartnews-dev
 
-BUILD := docker-compose run --rm static shards build --link-flags "-static /v/libcurl.a"
+BUILD  := docker-compose run --rm static shards build --link-flags "-static /v/libcurl.a"
+DOCKER_IMAGE := crystallang/crystal:0.33.0
 
 all: smartnews-dev
 release: release/smartnews
@@ -31,6 +32,20 @@ release/smartnews:
 	@mkdir -p $(dir $@)
 	$(BUILD) $(notdir $@) --release $(0)
 	@cp -p bin/$(notdir $@) $@
+
+.PHONY: release/smartnews-dev
+release/smartnews-dev:
+	@mkdir -p $(dir $@)
+	$(BUILD) $(notdir $@) $(0)
+	@cp -p bin/$(notdir $@) $@
+
+.PHONY: static
+static:
+	@shards build --link-flags "-static /v/libcurl.a"
+
+.PHONY: console
+console:
+	docker run --rm -it -v $(PWD):/v -w /v -u "$(UID):$(GID)" $(DOCKER_IMAGE) bash
 
 JSONS   ?= $(wildcard json/smartnews/*.json)
 PROTOS  ?= $(subst json,proto,$(JSONS))
@@ -78,7 +93,7 @@ version:
 	  echo "  make version VERSION=$(GUESSED_VERSION)";\
 	else \
 	  sed -i -e 's/^version: .*/version: $(VERSION)/' shard.yml ;\
-	  sed -i -e 's/^    version: [0-9]\+\.[0-9]\+\.[0-9]\+/    version: $(VERSION)/' README.md ;\
+	  sed -i -e 's/^    version: [0-9]\+\.[0-9]\+\.[0-9]\+/    version: $(VERSION)/' README.cr.md ;\
 	  echo git commit -a -m "'$(COMMIT_MESSAGE)'" ;\
 	  git commit -a -m 'version: $(VERSION)' ;\
 	  git tag "v$(VERSION)" ;\

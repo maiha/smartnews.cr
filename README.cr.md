@@ -1,6 +1,6 @@
 smartnews for [Crystal](http://crystal-lang.org/).
 
-- crystal: 0.32.1
+- crystal: 0.33.0
 
 ### Installation
 
