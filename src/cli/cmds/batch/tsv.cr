@@ -6,7 +6,8 @@ class Cmds::BatchCmd
   # - convert <BACKSLASH> to <BACKSLASH><BACKSLASH>
 
   def tsv_impl
-    hint  = "[tsv] report"
+    hint = "[tsv] report"
+    logger.debug "start: #{hint}"
 
     # touch output path for append
     Pretty::File.rm_f(report_tsv_path)
@@ -34,6 +35,7 @@ class Cmds::BatchCmd
 
       Pretty::File.write(report_tsv_path, buf)
     }
+    logger.debug "done: #{hint}"
   end
 
   private def tsv_serialize(v) : String

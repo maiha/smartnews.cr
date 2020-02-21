@@ -33,7 +33,7 @@ Cmds.command "batch" do
     recv_account
     recv_insight
 
-    update_status "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}", logger: "INFO"
+    update_status "[recv:done] API:#{api} MEM:#{max_mem}", logger: "INFO"
 
   rescue err
     update_status "[recv] #{err.to_s}", logger: "FATAL"
@@ -47,7 +47,7 @@ Cmds.command "batch" do
   task "db", "<date>" do
     import_clickhouse_tsv
 
-    update_status "[clickhouse:done] DB:#{db} MEM:#{Pretty.process_info.max}", logger: "INFO"
+    update_status "[clickhouse:done] DB:#{db} MEM:#{max_mem}", logger: "INFO"
   end
 
   task "gc" do
@@ -56,7 +56,7 @@ Cmds.command "batch" do
     gc_storage HttpCall
     gc_tsv
 
-    update_status "[gc:done] DISK:#{disk} MEM:#{Pretty.process_info.max}", logger: "INFO"
+    update_status "[gc:done] DISK:#{disk} MEM:#{max_mem}", logger: "INFO"
   end
 end
 

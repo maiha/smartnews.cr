@@ -4,7 +4,8 @@ class Cmds::BatchCmd
 
   def recv_insight
     hint = "[recv] insight"
-
+    logger.debug "start: #{hint}"
+    
     house = house(Smartnews::Proto::Insight)
 
     # iterate job
@@ -34,6 +35,8 @@ class Cmds::BatchCmd
     # job summary
     msg = "#{hint} got #{record_count} records (in recv: #{recv})"
     update_status msg, logger: "INFO", flush: true
+
+    logger.debug "done: #{hint}"
   end
 
   private def recv_insight_impl(house, converter, aid, hint)

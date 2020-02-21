@@ -1,6 +1,7 @@
 class Cmds::BatchCmd
   def recv_account
     hint = "[recv] accounts"
+    logger.debug "start: #{hint}"
 
     client = new_client
     url    = "/api/v1.0/accounts"
@@ -13,5 +14,6 @@ class Cmds::BatchCmd
 
     msg = "%s %s [%s]" % [hint, house.count, recv.last.to_s]
     update_status msg, logger: "INFO", flush: true
+    logger.debug "done: #{hint}"
   end
 end

@@ -1,5 +1,8 @@
 class Cmds::BatchCmd
   def import_clickhouse_tsv
+    hint = "[clickhouse] (tsv)"
+    logger.debug "start: #{hint}"
+
     shell = Shell::Seq.new
     shell.dryrun = config.dryrun?
 
@@ -15,8 +18,9 @@ class Cmds::BatchCmd
         msg = "FAIL: %s\n%s" % [shell.last.cmd, shell.stderr]
         abort msg
       end
-      logger.info "[clickhouse] (tsv) [%s]" % [db.last]
+      logger.info "%s [%s]" % [hint, db.last]
     end
+    logger.debug "done: #{hint}"
   end
   
 end

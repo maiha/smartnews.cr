@@ -67,7 +67,7 @@ class Cmds::BatchCmd
       STDERR.puts error
     end
 
-    msg = "#{task}, API:#{api}, DB:#{db}, IO:#{disk}, MEM:#{Pretty.process_info.max}"
+    msg = "#{task}, API:#{api}, DB:#{db}, IO:#{disk}, MEM:#{max_mem}"
     if task_state.finished?
       logger.info "[task:done] #{msg}"
     else
@@ -91,6 +91,19 @@ class Cmds::BatchCmd
       callback.call(status_logger)
       @status_callback = nil
     end
+  end
+
+  private var max_mem_error_reported : Bool = false
+
+  private def max_mem : String
+    Pretty.process_info(skip_invalid: true).max.to_s
+  rescue err
+    # report error only once
+    if !max_mem_error_reported?
+      logger.warn err.to_s
+      @max_mem_error_reported = true
+    end
+    return "---"
   end
 
   private def setup_target_date!(v)
