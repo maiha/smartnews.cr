@@ -22,7 +22,7 @@ dependencies:
     version: ">= 1.2.0"
   pretty:
     github: maiha/pretty.cr
-    version: ">= 0.9.1"
+    version: ">= 0.9.2"
   curl:
     github: maiha/curl.cr
     version: ">= 0.4.5"
