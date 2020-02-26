@@ -11,42 +11,42 @@ all: smartnews-dev
 export UID = $(shell id -u)
 export GID = $(shell id -g)
 
-COMPILE_FLAGS=
-LINK_FLAGS=--link-flags "-static -lcurl -lnghttp2 -lidn2 -lssl -lcrypto -lz"
+COMPILE_FLAGS=-Dstatic
 BUILD_TARGET=
+
+ON_ALPINE=docker-compose run --rm alpine
 
 .PHONY: build
 build:
-	@docker-compose run --rm alpine shards build  $(COMPILE_FLAGS) $(LINK_FLAGS) $(BUILD_TARGET) $(O)
+	@$(ON_ALPINE) shards build $(COMPILE_FLAGS) --link-flags "-static" $(BUILD_TARGET) $(O)
 
 .PHONY: smartnews-dev
 smartnews-dev: BUILD_TARGET=smartnews-dev
 smartnews-dev: build
 
 .PHONY: smartnews
-smartnews: BUILD_TARGET=smartnews
-smartnews: COMPILE_FLAGS=--release
+smartnews: BUILD_TARGET=--release smartnews
 smartnews: build
 
 .PHONY: console
 console:
-	@docker-compose run --rm alpine sh
+	@$(ON_ALPINE) sh
 
 ######################################################################
 ### testing
 
 .PHONY: ci
-ci: test smartnews
+ci: check_version_mismatch test smartnews
 
 .PHONY: test
-test: check_version_mismatch spec
+test: spec
 
 .PHONY: spec
 spec:
-	crystal spec -v --fail-fast
+	@$(ON_ALPINE) crystal spec $(COMPILE_FLAGS) -v --fail-fast
 
-.PHONY : check_version_mismatch
-check_version_mismatch: README.cr.md shard.yml 
+.PHONY: check_version_mismatch
+check_version_mismatch: README.cr.md shard.yml
 	diff -w -c <(grep version: $<) <(grep ^version: shard.yml)
 
 ######################################################################

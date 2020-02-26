@@ -32,6 +32,8 @@ Cmds.command "batch" do
   task "recv", "<date>" do
     recv_account
     recv_insight
+    recv_campaign
+    recv_creative
 
     update_status "[recv:done] API:#{api} MEM:#{max_mem}", logger: "INFO"
 

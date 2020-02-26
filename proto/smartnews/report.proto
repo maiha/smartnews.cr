@@ -1,26 +1,54 @@
 syntax = "proto2";
 
 message Report {
-  required string date                = 1  ; // "2019-12-31"
-  optional string accountId           = 2  ; // "1000000"
-  optional string campaignId          = 3  ; // "1000003"
-  optional string creativeId          = 4  ; // "1000013"
-  optional string accountName         = 5  ; // "SmartNews, Inc"
-  optional string campaignName        = 6  ; // "SmartNews Installs 7/12"
-  optional string creativeName        = 7  ; // "label for creative management"
-  optional int64  impressions         = 8  ; // 13204
-  optional int64  viewableImpressions = 9  ; // 10444
-  optional int64  clicks              = 10 ; // 48
-  optional int64  conversions         = 11 ; // 3
-  optional double spend               = 12 ; // 1052.5128
-  optional double cpm                 = 13 ; // 100.77678752999999
-  optional double cpc                 = 14 ; // 21.92734935
-  optional double ctr                 = 15 ; // 0.36353
-  optional double vctr                = 16 ; // 0.45959
-  optional double cvr                 = 17 ; // 6.25
-  optional double cpa                 = 18 ; // 350.83758967
+  required string date                =  1; // "2019-12-31"
+
+  // insight
+  optional string accountId           =  2; // "1000000"
+  optional string campaignId          =  3; // "1000003"
+  optional string creativeId          =  4; // "1000013"
+  optional string accountName         =  5; // "SmartNews, Inc"
+  optional string campaignName        =  6; // "SmartNews Installs 7/12"
+  optional string creativeName        =  7; // "label for creative management"
+  optional int64  impressions         =  8; // 13204
+  optional int64  viewableImpressions =  9; // 10444
+  optional int64  clicks              = 10; // 48
+  optional int64  conversions         = 11; // 3
+  optional double spend               = 12; // 1052.5128
+  optional double cpm                 = 13; // 100.77678752999999
+  optional double cpc                 = 14; // 21.92734935
+  optional double ctr                 = 15; // 0.36353
+  optional double vctr                = 16; // 0.45959
+  optional double cvr                 = 17; // 6.25
+  optional double cpa                 = 18; // 350.83758967
+
+  // campaign
+  optional string actionType     = 19; // "WEBSITE_CONVERSION"
+  optional bool   enable         = 20; // true
+  optional string startTime      = 21; // "2019-09-17T15:00:00Z"
+  optional string endTime        = 22; // "2020-02-29T14:59:00Z"
+  optional int64  totalBudget    = 23; // 1026473
+  optional int64  dailyBudget    = 24; // 4116
+  optional int64  bidAmount      = 25; // 50
+  optional string billingEvent   = 26; // "CLICKS"
+  optional bool   isAutoBid      = 27; // true
+  optional string sponsoredName  = 28; // "SmartAds"
+  optional int64  targetCpa      = 29; // 0
+  optional string status         = 30; // "NORMAL"
+  optional string approvalStatus = 31; // "APPROVED"
+  optional string updatedAt      = 32; // "2020-01-31T02:02:03Z"
+
+  // creative
+  optional string adcreativeId      = 33; // "10000005"
+  optional string creativeType      = 34; // "IMAGE"
+  optional bool   isDynamicCreative = 35; // false
+  optional bool   immutable         = 36; // true
+  optional string title             = 37; // "Trending News & Stories"
+  optional string text              = 38; // "Your news in one minute."
+  optional string linkUrl           = 39; // "http://creative.smartnews-ads.com"
+  optional string trackingUrl       = 40; //  "http://foo.trackingsystem.com/?a=b&c=d&e=f"
 }
 
 message ReportArray {
-  repeated Report array = 1;
+  repeated Report array =  1; 
 }

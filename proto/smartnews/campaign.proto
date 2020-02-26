@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+message Campaign {
+  optional string actionType     = 1  ; // "WEBSITE_CONVERSION"
+  optional string name           = 2  ; // "SmartNews Installs 7/12"
+  optional string campaignId     = 3  ; // "1000005"
+  optional string accountId      = 4  ; // "1000000"
+  optional bool   enable         = 5  ; // true
+  optional string startTime      = 6  ; // "2019-09-17T15:00:00Z"
+  optional string endTime        = 7  ; // "2020-02-29T14:59:00Z"
+  optional int64  totalBudget    = 8  ; // 1026473
+  optional int64  dailyBudget    = 9  ; // 4116
+  optional int64  bidAmount      = 10 ; // 50
+  optional string billingEvent   = 11 ; // "CLICKS"
+  optional bool   isAutoBid      = 12 ; // true
+  optional string sponsoredName  = 13 ; // "SmartAds"
+  optional int64  targetCpa      = 14 ; // 0
+  optional string creativeType   = 15 ; // "IMAGE"
+  optional string status         = 16 ; // "NORMAL"
+  optional string approvalStatus = 17 ; // "APPROVED"
+  optional string updatedAt      = 18 ; // "2020-01-31T02:02:03Z"
+}
+
+message CampaignArray {
+  repeated Campaign array = 1;
+}

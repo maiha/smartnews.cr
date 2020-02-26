@@ -26,6 +26,19 @@ module Smartnews
         optional :vctr, :double, 16
         optional :cvr, :double, 17
         optional :cpa, :double, 18
+        optional :adcreative_id, :string, 19
+        optional :name, :string, 20
+        optional :creative_type, :string, 21
+        optional :is_dynamic_creative, :bool, 22
+        optional :immutable, :bool, 23
+        optional :title, :string, 24
+        optional :text, :string, 25
+        optional :sponsored_name, :string, 26
+        optional :enable, :bool, 27
+        optional :status, :string, 28
+        optional :approval_status, :string, 29
+        optional :link_url, :string, 30
+        optional :tracking_url, :string, 31
       end
     end
     

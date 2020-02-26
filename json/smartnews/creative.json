@@ -1,0 +1,18 @@
+{
+  "adcreativeId": "10000005",
+  "accountId": "10000002",
+  "name": "label for creative management",
+  "creativeType": "IMAGE",
+  "isDynamicCreative": false,
+  "immutable": true,
+  "title": "Trending News & Stories",
+  "text": "Your news in one minute.",
+  "sponsoredName": "smartnews",
+  "creativeId": "1000020",
+  "campaignId": "1000021",
+  "enable": true,
+  "status": "NORMAL",
+  "approvalStatus": "APPROVED",
+  "linkUrl": "http://creative.smartnews-ads.com",
+  "trackingUrl": "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+}

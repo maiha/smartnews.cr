@@ -1,0 +1,20 @@
+{
+  "actionType": "WEBSITE_CONVERSION",
+  "name": "SmartNews Installs 7/12",
+  "campaignId": "1000005",
+  "accountId": "1000000",
+  "enable": true,
+  "startTime": "2019-09-17T15:00:00Z",
+  "endTime": "2020-02-29T14:59:00Z",
+  "totalBudget": 1026473,
+  "dailyBudget": 4116,
+  "bidAmount": 50,
+  "billingEvent": "CLICKS",
+  "isAutoBid": true,
+  "sponsoredName": "SmartAds",
+  "targetCpa": 0,
+  "creativeType": "IMAGE",
+  "status": "NORMAL",
+  "approvalStatus": "APPROVED",
+  "updatedAt": "2020-01-31T02:02:03Z"
+}

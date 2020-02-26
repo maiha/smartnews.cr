@@ -14,19 +14,54 @@ class Cmds::BatchCmd
 
     create = Smartnews::Converter::Report.clickhouse_create
     keys = create.columns.map(&.name)
-    pbs = house(Smartnews::Proto::Insight).load
-    logger.info "%s house records:%d" % [hint, pbs.size]
+
+    insights = house(Smartnews::Proto::Insight).load
+    logger.info "%s %s records:%d" % [hint, "insight", insights.size]
+
+    campaigns = house(Smartnews::Proto::Campaign).load
+    logger.info "%s %s records:%d" % [hint, "campaign", campaigns.size]
+
+    creatives = house(Smartnews::Proto::Creative).load
+    logger.info "%s %s records:%d" % [hint, "creative", creatives.size]
+
+    campaigns_hash = Hash(String, Smartnews::Proto::Campaign).new
+    campaigns.each_with_index do |c, i|
+      cid = c.campaign_id || (logger.debug "house(Campaign)##{i}: campaign_id is missing: #{c.inspect}"; next)
+      campaigns_hash[cid] = c
+    end
+
+    creatives_hash = Hash(String, Smartnews::Proto::Creative).new
+    creatives.each_with_index do |c, i|
+      cid = c.creative_id || (logger.debug "house(Creative)##{i}: creative_id is missing: #{c.inspect}"; next)
+      creatives_hash[cid] = c
+    end
 
     disk.measure {
       buf = CSV.build(quoting: tsv_quote, separator: tsv_sep) do |csv|
-        pbs.each do |pb|
+        csv.row(keys)           # header
+        insights.each do |insight|
           vals = Array(String).new
           keys.each do |key|
-            case key
-            when "date"
+            if key == "date"
               vals << partition_key
+            elsif f = Smartnews::Proto::Insight::Fields[key]?
+              vals << tsv_serialize(insight[key]?, f)
+            elsif f = Smartnews::Proto::Campaign::Fields[key]?
+              cid = insight.campaign_id.to_s
+              campaign = campaigns_hash[cid]? || (
+                logger.warn "campaign not found: insight=#{insight.inspect}"
+                nil
+              )
+              vals << tsv_serialize(campaign.try{|c| c[key]?}, f)
+            elsif f = Smartnews::Proto::Creative::Fields[key]?
+              cid = insight.creative_id.to_s
+              creative = creatives_hash[cid]? || (
+                logger.warn "creative not found: insight=#{insight.inspect}"
+                nil
+              )
+              vals << tsv_serialize(creative.try{|c| c[key]?}, f)
             else
-              vals << tsv_serialize(pb[key]?)
+              raise "[BUG] #{hint} got unknown key: #{key.inspect}"
             end
           end
           csv.row(vals)
@@ -38,7 +73,7 @@ class Cmds::BatchCmd
     logger.debug "done: #{hint}"
   end
 
-  private def tsv_serialize(v) : String
+  private def tsv_serialize(v, field = nil) : String
     # Nullable
     return "\\N" if v.nil?
 
@@ -47,6 +82,14 @@ class Cmds::BatchCmd
     # escape backslashes
     v = escape_backslashes(v)
 
+    # clickhouse expects UInt8 for Boolean
+    if field.try(&.pb_type) == "bool"
+      case v
+      when "true"  ; v = "1"
+      when "false" ; v = "0"
+      end
+    end
+    
     return v
   end
 

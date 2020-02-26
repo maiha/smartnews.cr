@@ -17,12 +17,12 @@ class Smartnews::Converter::Payload(T)
       raise Smartnews::Error.new("response doesn't contain data nor error")
     end
   end
-  
-  def to_pb
-    data!.to_pb
-  end
-  
+
   def to_pbs
-    data!.map(&.to_pb)
+    {% if @type.type_vars.first.name.stringify =~ /^Array\(/ %}
+      data!.map(&.to_pb)
+    {% else %}
+      [data!.to_pb]
+    {% end %}
   end
 end
