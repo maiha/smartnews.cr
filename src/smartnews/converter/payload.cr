@@ -19,7 +19,7 @@ class Smartnews::Converter::Payload(T)
   end
 
   def to_pbs
-    {% if @type.type_vars.first.name.stringify =~ /^Array\(/ %}
+    {% if T <= ::Array %}
       data!.map(&.to_pb)
     {% else %}
       [data!.to_pb]
