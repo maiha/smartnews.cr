@@ -28,7 +28,7 @@ Cmds.command "clickhouse" do
     count_current_sql = "SELECT count(*) FROM #{db}.#{current_table} WHERE #{partition_by} = '#{partition_key}'"
 
     # shell
-    shell.dryrun = config.dryrun?
+    shell.dryrun = !!config.dryrun?
 
     # 1. Create if target table does not exist
     create_sql = build_create_sql(current_table, drop_table: false)

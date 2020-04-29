@@ -7,7 +7,7 @@ class Smartnews::Config < TOML::Config
   bool "verbose"
   bool "dryrun"
   bool "colorize"
-  int  "limit"
+  i32  "limit"
   str  "fields"
   str  "format"
 
@@ -15,23 +15,23 @@ class Smartnews::Config < TOML::Config
   str  "api/access_token"
   bool "api/logging"
   str  "api/url"
-  int  "api/keep_remaining"
+  i32  "api/keep_remaining"
 
-  float "api/dns_timeout"
-  float "api/connect_timeout"
-  float "api/read_timeout"
+  f64 "api/dns_timeout"
+  f64 "api/connect_timeout"
+  f64 "api/read_timeout"
 
   # batch
   str  "batch/work_dir"
   str  "batch/global_dir"
   str  "batch/status_log"
-  int  "batch/max_attempts"
+  i32  "batch/max_attempts"
   bool "batch/gc"
   bool "batch/pb_logging"
 
   # clickhouse
   str "clickhouse/host"
-  int "clickhouse/port"
+  i32 "clickhouse/port"
   str "clickhouse/db"
   str "clickhouse/table"
   str "clickhouse/engine"

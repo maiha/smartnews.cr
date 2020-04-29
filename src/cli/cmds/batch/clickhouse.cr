@@ -4,7 +4,7 @@ class Cmds::BatchCmd
     logger.debug "start: #{hint}"
 
     shell = Shell::Seq.new
-    shell.dryrun = config.dryrun?
+    shell.dryrun = !!config.dryrun?
 
     db.measure {
       logger.info "#{PROGRAM_NAME} clickhouse replace #{partition_key} #{report_tsv_path}"

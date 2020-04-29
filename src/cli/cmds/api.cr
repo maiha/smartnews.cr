@@ -42,7 +42,7 @@ Cmds.command "api" do
   end
 
   private def show_body(res : Smartnews::Response)
-    puts Pretty.json(res.body, color: config.colorize?)
+    puts Pretty.json(res.body, color: !!config.colorize?)
   rescue Smartnews::Response::Error
     puts "N/A"
   rescue

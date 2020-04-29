@@ -16,32 +16,23 @@ dependencies:
     branch: json
   protobuf-storage:
     github: maiha/protobuf-storage.cr
-    version: ">= 0.3.3"
   var:
     github: maiha/var.cr
-    version: ">= 1.2.0"
   pretty:
     github: maiha/pretty.cr
-    version: ">= 0.9.2"
   curl:
     github: maiha/curl.cr
-    version: ">= 0.4.5"
 
 development_dependencies:
   clickhouse:
     github: maiha/clickhouse.cr
-    version: ">= 0.5.4"
   cmds:
     github: maiha/cmds.cr
-    version: ">= 0.3.4"
   opts:
     github: maiha/opts.cr
-    version: ">= 0.6.0"
   shell:
     github: maiha/shell.cr
-    version: ">= 0.4.0"
   toml-config:
     github: maiha/toml-config.cr
-    version: ">= 0.5.1"
 
 license: MIT
