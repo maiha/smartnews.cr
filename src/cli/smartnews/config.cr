@@ -95,7 +95,7 @@ class Smartnews::Config < TOML::Config
 
   def build_batch_status_logger?
     if path = batch_status_log?
-      Dir.mkdir_p(File.dirname(path))
+      Dir.mkdir_p(File.dirname(path)) if path != "STDOUT" && path != "STDERR"
       opts = {
         "path"   => path,
         "mode"   => "a+",
