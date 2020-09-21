@@ -1,6 +1,8 @@
 ## Generated from HttpCall.proto
 require "protobuf"
 
+require "./Datetime.pb.cr"
+
 
 struct HttpCall
   include Protobuf::Message

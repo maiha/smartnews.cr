@@ -63,6 +63,9 @@ class Cmds::BatchCmd
       logger.info "%s found suspended job" % [hint]
     else
       url = "/api/v1.0/accounts/#{aid}/insights -d level=creative -d since=#{insight_since} -d until=#{insight_until}"
+      if config.batch_video_metrics?
+        url = "#{url} -d fields_presets=video"
+      end
       house.checkin(url)
       logger.debug "%s created new url: %s" % [hint, url]
     end

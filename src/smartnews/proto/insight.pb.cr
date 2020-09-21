@@ -25,6 +25,18 @@ module Smartnews
         optional :vctr, :double, 15
         optional :cvr, :double, 16
         optional :cpa, :double, 17
+        optional :video_avg_view_rate, :double, 18
+        optional :video_avg_view_time, :double, 19
+        optional :video_complete_view_rate, :double, 20
+        optional :video_complete_views, :int64, 21
+        optional :video_length, :int64, 22
+        optional :video_p100_views, :int64, 23
+        optional :video_p25_views, :int64, 24
+        optional :video_p50_views, :int64, 25
+        optional :video_p75_views, :int64, 26
+        optional :video_p95_views, :int64, 27
+        optional :video_viewable_views, :int64, 28
+        optional :video_views, :int64, 29
       end
     end
     

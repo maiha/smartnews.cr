@@ -26,19 +26,40 @@ module Smartnews
         optional :vctr, :double, 16
         optional :cvr, :double, 17
         optional :cpa, :double, 18
-        optional :adcreative_id, :string, 19
-        optional :name, :string, 20
-        optional :creative_type, :string, 21
-        optional :is_dynamic_creative, :bool, 22
-        optional :immutable, :bool, 23
-        optional :title, :string, 24
-        optional :text, :string, 25
-        optional :sponsored_name, :string, 26
-        optional :enable, :bool, 27
-        optional :status, :string, 28
-        optional :approval_status, :string, 29
-        optional :link_url, :string, 30
-        optional :tracking_url, :string, 31
+        optional :action_type, :string, 19
+        optional :enable, :bool, 20
+        optional :start_time, :string, 21
+        optional :end_time, :string, 22
+        optional :total_budget, :int64, 23
+        optional :daily_budget, :int64, 24
+        optional :bid_amount, :int64, 25
+        optional :billing_event, :string, 26
+        optional :is_auto_bid, :bool, 27
+        optional :sponsored_name, :string, 28
+        optional :target_cpa, :int64, 29
+        optional :status, :string, 30
+        optional :approval_status, :string, 31
+        optional :updated_at, :string, 32
+        optional :adcreative_id, :string, 33
+        optional :creative_type, :string, 34
+        optional :is_dynamic_creative, :bool, 35
+        optional :immutable, :bool, 36
+        optional :title, :string, 37
+        optional :text, :string, 38
+        optional :link_url, :string, 39
+        optional :tracking_url, :string, 40
+        optional :video_avg_view_rate, :double, 41
+        optional :video_avg_view_time, :double, 42
+        optional :video_complete_view_rate, :double, 43
+        optional :video_complete_views, :int64, 44
+        optional :video_length, :int64, 45
+        optional :video_p100_views, :int64, 46
+        optional :video_p25_views, :int64, 47
+        optional :video_p50_views, :int64, 48
+        optional :video_p75_views, :int64, 49
+        optional :video_p95_views, :int64, 50
+        optional :video_viewable_views, :int64, 51
+        optional :video_views, :int64, 52
       end
     end
     

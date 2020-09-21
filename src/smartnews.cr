@@ -8,10 +8,12 @@ require "logger"
 require "json"
 require "http"
 require "uri"
+require "colorize"
 
 require "var"
 require "pretty"
 require "curl"
+require "clickhouse"
 
 require "./proto/**"
 require "./smartnews/client"

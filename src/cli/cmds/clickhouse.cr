@@ -9,6 +9,28 @@ Cmds.command "clickhouse" do
 
   var logger : Logger = build_logger(path: "clickhouse.log")
   var shell = Shell::Seq.new
+
+  usage "migrate  # migrate 'report' table"
+  task "migrate" do
+    sql  = "SELECT * FROM `%s`.`%s` LIMIT 0 FORMAT JSONCompact" % [db, table]
+    json = run!("clickhouse-client -h #{host} -mn", stdin: sql).stdout
+    src  = Clickhouse::Response::JSONCompactParser.parse(json).meta.map(&.column)
+    dst  = Smartnews::Converter::Report.clickhouse_create.columns
+
+    migrate = Clickhouse::Migrate.new(src: src, dst: dst)
+    errors = migrate.errors
+
+    if errors.any? || config.dryrun?
+      puts migrate.manifest
+      abort "#{errors.size} errors found" if errors.any?
+    else
+      migrate.each do |plan|
+        sql = "ALTER TABLE `%s`.`%s` %s" % [db, table, plan.alter_query]
+        run!("clickhouse-client -h #{host} -mn", stdin: sql)
+        logger.info sql
+      end
+    end
+  end
   
   usage "replace 2017-11-13 report.tsv"
   # Update ClickHouse data to atomic (using REPLACE PARTITION)

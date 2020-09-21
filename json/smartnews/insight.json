@@ -15,5 +15,17 @@
   "ctr": 0.36353,
   "vctr": 0.45959,
   "cvr": 6.25,
-  "cpa": 350.83758967
+  "cpa": 350.83758967,
+  "videoAvgViewRate": 41.20017,
+  "videoAvgViewTime": 4085.73368,
+  "videoCompleteViewRate": 43.09866,
+  "videoCompleteViews": 1861,
+  "videoLength": 9915,
+  "videoP100Views": 1861,
+  "videoP25Views": 3426,
+  "videoP50Views": 2834,
+  "videoP75Views": 2266,
+  "videoP95Views": 1876,
+  "videoViewableViews": 3603,
+  "videoViews": 4318
 }

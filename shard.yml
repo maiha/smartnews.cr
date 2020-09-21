@@ -22,10 +22,10 @@ dependencies:
     github: maiha/pretty.cr
   curl:
     github: maiha/curl.cr
-
-development_dependencies:
   clickhouse:
     github: maiha/clickhouse.cr
+
+development_dependencies:
   cmds:
     github: maiha/cmds.cr
   opts:

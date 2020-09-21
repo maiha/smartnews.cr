@@ -1,23 +1,35 @@
 syntax = "proto2";
 
 message Insight {
-  optional string accountId           = 1  ; // "1000000"
-  optional string campaignId          = 2  ; // "1000003"
-  optional string creativeId          = 3  ; // "1000013"
-  optional string accountName         = 4  ; // "SmartNews, Inc"
-  optional string campaignName        = 5  ; // "SmartNews Installs 7/12"
-  optional string creativeName        = 6  ; // "label for creative management"
-  optional int64  impressions         = 7  ; // 13204
-  optional int64  viewableImpressions = 8  ; // 10444
-  optional int64  clicks              = 9  ; // 48
-  optional int64  conversions         = 10 ; // 3
-  optional double spend               = 11 ; // 1052.5128
-  optional double cpm                 = 12 ; // 100.77678752999999
-  optional double cpc                 = 13 ; // 21.92734935
-  optional double ctr                 = 14 ; // 0.36353
-  optional double vctr                = 15 ; // 0.45959
-  optional double cvr                 = 16 ; // 6.25
-  optional double cpa                 = 17 ; // 350.83758967
+  optional string accountId             = 1  ; // "1000000"
+  optional string campaignId            = 2  ; // "1000003"
+  optional string creativeId            = 3  ; // "1000013"
+  optional string accountName           = 4  ; // "SmartNews, Inc"
+  optional string campaignName          = 5  ; // "SmartNews Installs 7/12"
+  optional string creativeName          = 6  ; // "label for creative management"
+  optional int64  impressions           = 7  ; // 13204
+  optional int64  viewableImpressions   = 8  ; // 10444
+  optional int64  clicks                = 9  ; // 48
+  optional int64  conversions           = 10 ; // 3
+  optional double spend                 = 11 ; // 1052.5128
+  optional double cpm                   = 12 ; // 100.77678752999999
+  optional double cpc                   = 13 ; // 21.92734935
+  optional double ctr                   = 14 ; // 0.36353
+  optional double vctr                  = 15 ; // 0.45959
+  optional double cvr                   = 16 ; // 6.25
+  optional double cpa                   = 17 ; // 350.83758967
+  optional double videoAvgViewRate      = 18 ; // 41.20017
+  optional double videoAvgViewTime      = 19 ; // 4085.73368
+  optional double videoCompleteViewRate = 20 ; // 43.09866
+  optional int64  videoCompleteViews    = 21 ; // 1861
+  optional int64  videoLength           = 22 ; // 9915
+  optional int64  videoP100Views        = 23 ; // 1861
+  optional int64  videoP25Views         = 24 ; // 3426
+  optional int64  videoP50Views         = 25 ; // 2834
+  optional int64  videoP75Views         = 26 ; // 2266
+  optional int64  videoP95Views         = 27 ; // 1876
+  optional int64  videoViewableViews    = 28 ; // 3603
+  optional int64  videoViews            = 29 ; // 4318
 }
 
 message InsightArray {

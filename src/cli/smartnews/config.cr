@@ -28,7 +28,8 @@ class Smartnews::Config < TOML::Config
   i32  "batch/max_attempts"
   bool "batch/gc"
   bool "batch/pb_logging"
-
+  bool "batch/video_metrics"
+  
   # clickhouse
   str "clickhouse/host"
   i32 "clickhouse/port"
@@ -162,6 +163,7 @@ status_log      = "log"
 gc              = true
 pb_logging      = false
 max_attempts    = 5
+video_metrics   = true
 
 [clickhouse]
 host   = "localhost"

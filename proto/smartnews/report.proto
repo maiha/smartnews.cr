@@ -47,8 +47,23 @@ message Report {
   optional string text              = 38; // "Your news in one minute."
   optional string linkUrl           = 39; // "http://creative.smartnews-ads.com"
   optional string trackingUrl       = 40; //  "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+
+  // video metrics (insight)
+  optional double videoAvgViewRate      = 41; // 41.20017
+  optional double videoAvgViewTime      = 42; // 4085.73368
+  optional double videoCompleteViewRate = 43; // 43.09866
+  optional int64  videoCompleteViews    = 44; // 1861
+  optional int64  videoLength           = 45; // 9915
+  optional int64  videoP100Views        = 46; // 1861
+  optional int64  videoP25Views         = 47; // 3426
+  optional int64  videoP50Views         = 48; // 2834
+  optional int64  videoP75Views         = 49; // 2266
+  optional int64  videoP95Views         = 50; // 1876
+  optional int64  videoViewableViews    = 51; // 3603
+  optional int64  videoViews            = 52; // 4318
 }
 
 message ReportArray {
   repeated Report array =  1; 
 }
+

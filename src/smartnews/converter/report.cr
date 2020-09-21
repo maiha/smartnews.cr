@@ -3,46 +3,58 @@ class Smartnews::Converter::Report
   ### JSON
 
   JSON.mapping({
-    date:                String   , # "2019-12-31"
-    accountId:           String?  , # "1000000"
-    campaignId:          String?  , # "1000003"
-    creativeId:          String?  , # "1000013"
-    accountName:         String?  , # "SmartNews, Inc"
-    campaignName:        String?  , # "SmartNews Installs 7/12"
-    creativeName:        String?  , # "label for creative management"
-    impressions:         Int64?   , # 13204
-    viewableImpressions: Int64?   , # 10444
-    clicks:              Int64?   , # 48
-    conversions:         Int64?   , # 3
-    spend:               Float64? , # 1052.5128
-    cpm:                 Float64? , # 100.77678752999999
-    cpc:                 Float64? , # 21.92734935
-    ctr:                 Float64? , # 0.36353
-    vctr:                Float64? , # 0.45959
-    cvr:                 Float64? , # 6.25
-    cpa:                 Float64? , # 350.83758967
-    actionType:          String?  , # "WEBSITE_CONVERSION"
-    enable:              Bool?    , # true
-    startTime:           String?  , # "2019-09-17T15:00:00Z"
-    endTime:             String?  , # "2020-02-29T14:59:00Z"
-    totalBudget:         Int64?   , # 1026473
-    dailyBudget:         Int64?   , # 4116
-    bidAmount:           Int64?   , # 50
-    billingEvent:        String?  , # "CLICKS"
-    isAutoBid:           Bool?    , # true
-    sponsoredName:       String?  , # "SmartAds"
-    targetCpa:           Int64?   , # 0
-    status:              String?  , # "NORMAL"
-    approvalStatus:      String?  , # "APPROVED"
-    updatedAt:           String?  , # "2020-01-31T02:02:03Z"
-    adcreativeId:        String?  , # "10000005"
-    creativeType:        String?  , # "IMAGE"
-    isDynamicCreative:   Bool?    , # false
-    immutable:           Bool?    , # true
-    title:               String?  , # "Trending News & Stories"
-    text:                String?  , # "Your news in one minute."
-    linkUrl:             String?  , # "http://creative.smartnews-ads.com"
-    trackingUrl:         String?  , # "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+    date:                  String   , # "2019-12-31"
+    accountId:             String?  , # "1000000"
+    campaignId:            String?  , # "1000003"
+    creativeId:            String?  , # "1000013"
+    accountName:           String?  , # "SmartNews, Inc"
+    campaignName:          String?  , # "SmartNews Installs 7/12"
+    creativeName:          String?  , # "label for creative management"
+    impressions:           Int64?   , # 13204
+    viewableImpressions:   Int64?   , # 10444
+    clicks:                Int64?   , # 48
+    conversions:           Int64?   , # 3
+    spend:                 Float64? , # 1052.5128
+    cpm:                   Float64? , # 100.77678752999999
+    cpc:                   Float64? , # 21.92734935
+    ctr:                   Float64? , # 0.36353
+    vctr:                  Float64? , # 0.45959
+    cvr:                   Float64? , # 6.25
+    cpa:                   Float64? , # 350.83758967
+    actionType:            String?  , # "WEBSITE_CONVERSION"
+    enable:                Bool?    , # true
+    startTime:             String?  , # "2019-09-17T15:00:00Z"
+    endTime:               String?  , # "2020-02-29T14:59:00Z"
+    totalBudget:           Int64?   , # 1026473
+    dailyBudget:           Int64?   , # 4116
+    bidAmount:             Int64?   , # 50
+    billingEvent:          String?  , # "CLICKS"
+    isAutoBid:             Bool?    , # true
+    sponsoredName:         String?  , # "SmartAds"
+    targetCpa:             Int64?   , # 0
+    status:                String?  , # "NORMAL"
+    approvalStatus:        String?  , # "APPROVED"
+    updatedAt:             String?  , # "2020-01-31T02:02:03Z"
+    adcreativeId:          String?  , # "10000005"
+    creativeType:          String?  , # "IMAGE"
+    isDynamicCreative:     Bool?    , # false
+    immutable:             Bool?    , # true
+    title:                 String?  , # "Trending News & Stories"
+    text:                  String?  , # "Your news in one minute."
+    linkUrl:               String?  , # "http://creative.smartnews-ads.com"
+    trackingUrl:           String?  , # "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+    videoAvgViewRate:      Float64? , # 41.20017
+    videoAvgViewTime:      Float64? , # 4085.73368
+    videoCompleteViewRate: Float64? , # 43.09866
+    videoCompleteViews:    Int64?   , # 1861
+    videoLength:           Int64?   , # 9915
+    videoP100Views:        Int64?   , # 1861
+    videoP25Views:         Int64?   , # 3426
+    videoP50Views:         Int64?   , # 2834
+    videoP75Views:         Int64?   , # 2266
+    videoP95Views:         Int64?   , # 1876
+    videoViewableViews:    Int64?   , # 3603
+    videoViews:            Int64?   , # 4318
   })
 
   ######################################################################
@@ -90,6 +102,18 @@ class Smartnews::Converter::Report
       text: text,
       link_url: linkUrl,
       tracking_url: trackingUrl,
+      video_avg_view_rate: videoAvgViewRate,
+      video_avg_view_time: videoAvgViewTime,
+      video_complete_view_rate: videoCompleteViewRate,
+      video_complete_views: videoCompleteViews,
+      video_length: videoLength,
+      video_p100_views: videoP100Views,
+      video_p25_views: videoP25Views,
+      video_p50_views: videoP50Views,
+      video_p75_views: videoP75Views,
+      video_p95_views: videoP95Views,
+      video_viewable_views: videoViewableViews,
+      video_views: videoViews,
     )
   end
 
@@ -148,6 +172,20 @@ class Smartnews::Converter::Report
         optional string text              = 38; // "Your news in one minute."
         optional string linkUrl           = 39; // "http://creative.smartnews-ads.com"
         optional string trackingUrl       = 40; //  "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+      
+        // video metrics (insight)
+        optional double videoAvgViewRate      = 41; // 41.20017
+        optional double videoAvgViewTime      = 42; // 4085.73368
+        optional double videoCompleteViewRate = 43; // 43.09866
+        optional int64  videoCompleteViews    = 44; // 1861
+        optional int64  videoLength           = 45; // 9915
+        optional int64  videoP100Views        = 46; // 1861
+        optional int64  videoP25Views         = 47; // 3426
+        optional int64  videoP50Views         = 48; // 2834
+        optional int64  videoP75Views         = 49; // 2266
+        optional int64  videoP95Views         = 50; // 1876
+        optional int64  videoViewableViews    = 51; // 3603
+        optional int64  videoViews            = 52; // 4318
       }
       
       message ReportArray {
@@ -205,7 +243,19 @@ class Smartnews::Converter::Report
         title Nullable(String),
         text Nullable(String),
         link_url Nullable(String),
-        tracking_url Nullable(String)
+        tracking_url Nullable(String),
+        video_avg_view_rate Nullable(Float64),
+        video_avg_view_time Nullable(Float64),
+        video_complete_view_rate Nullable(Float64),
+        video_complete_views Nullable(Int64),
+        video_length Nullable(Int64),
+        video_p100_views Nullable(Int64),
+        video_p25_views Nullable(Int64),
+        video_p50_views Nullable(Int64),
+        video_p75_views Nullable(Int64),
+        video_p95_views Nullable(Int64),
+        video_viewable_views Nullable(Int64),
+        video_views Nullable(Int64)
       )
       ENGINE = Log
       EOF
