@@ -10,7 +10,7 @@ smartnews for [Crystal](http://crystal-lang.org/).
 dependencies:
   smartnews:
     github: maiha/smartnews.cr
-    version: 0.4.1
+    version: 0.5.0
 ```
 
 2. Run `shards install`
