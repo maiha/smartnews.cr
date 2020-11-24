@@ -44,6 +44,8 @@ Cmds.command "batch" do
 
   task "tsv", "<date>" do
     tsv_impl
+
+    update_status "[tsv:done] MEM:#{max_mem}", logger: "INFO"
   end  
 
   task "db", "<date>" do
