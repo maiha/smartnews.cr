@@ -13,6 +13,7 @@ targets:
 dependencies:
   protobuf-storage:
     github: maiha/protobuf-storage.cr
+    version: 0.3.7
   var:
     github: maiha/var.cr
   pretty:
@@ -21,6 +22,7 @@ dependencies:
     github: maiha/curl.cr
   clickhouse:
     github: maiha/clickhouse.cr
+    version: 0.5.8
 
 development_dependencies:
   cmds:
