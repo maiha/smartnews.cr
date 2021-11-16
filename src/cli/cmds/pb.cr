@@ -120,7 +120,7 @@ Cmds.command "pb" do
   
   class Cond::Match < Cond
     def =~(pb : Protobuf::Message)
-      pb[@key].to_s =~ @val.to_s
+      pb[@key].to_s.includes?(@val.to_s)
     end
   end
   
