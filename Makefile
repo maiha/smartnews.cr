@@ -32,6 +32,10 @@ smartnews: build
 console:
 	@$(ON_ALPINE) sh
 
+.PHONY : clean
+clean:
+	rm -rf .crystal .shards lib bin shard.lock
+
 ######################################################################
 ### testing
 
