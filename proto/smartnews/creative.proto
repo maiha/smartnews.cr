@@ -1,10 +1,10 @@
 syntax = "proto2";
 
 message Imageinfo {
-  optional string imageId          = 1;
-  optional string imageUrl         = 2;
-  optional string width            = 3;
-  optional string height           = 4;
+  optional string image_id          = 1;
+  optional string image_url         = 2;
+  optional int32  width             = 3;
+  optional int32  height            = 4;
 }
 
 message Creative {
@@ -24,7 +24,7 @@ message Creative {
   optional string approvalStatus    = 14 ; // "APPROVED"
   optional string linkUrl           = 15 ; // "http://creative.smartnews-ads.com"
   optional string trackingUrl       = 16 ; // "http://foo.trackingsystem.com/?a=b&c=d&e=f"
-  repeated Imageinfo imageinfo      = 17 ;
+  map<string, Imageinfo> imageset   = 17 ;
 }
 
 message CreativeArray {

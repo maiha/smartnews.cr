@@ -10,13 +10,22 @@ module Smartnews
       contract_of "proto2" do
         optional :image_id, :string, 1
         optional :image_url, :string, 2
-        optional :width, :string, 3
-        optional :height, :string, 4
+        optional :width, :int32, 3
+        optional :height, :int32, 4
       end
     end
     
     struct Creative
       include ::Protobuf::Message
+      
+      struct ImagesetEntry
+        include ::Protobuf::Message
+        
+        contract_of "proto2" do
+          optional :key, :string, 1
+          optional :value, Imageinfo, 2
+        end
+      end
       
       contract_of "proto2" do
         optional :adcreative_id, :string, 1
@@ -35,7 +44,7 @@ module Smartnews
         optional :approval_status, :string, 14
         optional :link_url, :string, 15
         optional :tracking_url, :string, 16
-        repeated :imageinfo, Imageinfo, 17
+        repeated :imageset, Creative::ImagesetEntry, 17
       end
     end
     
