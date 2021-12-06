@@ -1,5 +1,12 @@
 syntax = "proto2";
 
+message Imageinfo {
+  optional string imageId          = 1;
+  optional string imageUrl         = 2;
+  optional string width            = 3;
+  optional string height           = 4;
+}
+
 message Creative {
   optional string adcreativeId      = 1  ; // "10000005"
   optional string accountId         = 2  ; // "10000002"
@@ -16,7 +23,8 @@ message Creative {
   optional string status            = 13 ; // "NORMAL"
   optional string approvalStatus    = 14 ; // "APPROVED"
   optional string linkUrl           = 15 ; // "http://creative.smartnews-ads.com"
-  optional string trackingUrl       = 16 ; //  "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+  optional string trackingUrl       = 16 ; // "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+  repeated Imageinfo imageinfo      = 17 ;
 }
 
 message CreativeArray {

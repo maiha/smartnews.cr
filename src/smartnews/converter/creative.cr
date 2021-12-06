@@ -1,6 +1,32 @@
+#class Imageinfo
+#  JSON.mapping(      
+#    imageId:         String? ,
+#    imageUrl:        String? ,
+#    width:           Int32?  ,
+#    height:          Int32?  ,
+#  )
+#end
+
 class Smartnews::Converter::Creative
+  
   ######################################################################
   ### JSON
+
+  class Imageinfo
+    JSON.mapping(
+      imageId:         String? ,
+      imageUrl:        String? ,
+      width:           Int32?  ,
+      height:          Int32?  ,
+    )
+  end
+
+  class Imageset
+    JSON.mapping(
+      "a": {type: Imageinfo, nilable: true},
+      "e": {type: Imageinfo, nilable: true},
+    )
+  end
 
   JSON.mapping({
     adcreativeId:      String? , # "10000005"
@@ -19,6 +45,7 @@ class Smartnews::Converter::Creative
     approvalStatus:    String? , # "APPROVED"
     linkUrl:           String? , # "http://creative.smartnews-ads.com"
     trackingUrl:       String? , # "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+    imageset:          {type: Imageset, nilable: true},
   })
 
   ######################################################################
@@ -42,6 +69,7 @@ class Smartnews::Converter::Creative
       approval_status: approvalStatus,
       link_url: linkUrl,
       tracking_url: trackingUrl,
+      imageinfo: ["a"].compact.as(Array(Imageinfo)?),
     )
   end
 
@@ -70,6 +98,7 @@ class Smartnews::Converter::Creative
         optional string approvalStatus    = 14 ; // "APPROVED"
         optional string linkUrl           = 15 ; // "http://creative.smartnews-ads.com"
         optional string trackingUrl       = 16 ; //  "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+        optional string imageId           = 17 ;
       }
       
       message CreativeArray {
