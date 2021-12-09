@@ -55,6 +55,10 @@ class Smartnews::Converter::Report
     videoP95Views:         Int64?   , # 1876
     videoViewableViews:    Int64?   , # 3603
     videoViews:            Int64?   , # 4318
+    imageId:               String?  , #
+    imageUrl:              String?  , #
+    width:                 Int64?   , #
+    height:                Int64?   , #
   })
 
   ######################################################################
@@ -114,6 +118,10 @@ class Smartnews::Converter::Report
       video_p95_views: videoP95Views,
       video_viewable_views: videoViewableViews,
       video_views: videoViews,
+      image_id: imageId,
+      image_url: imageUrl,
+      width: width,
+      height: height,
     )
   end
 
@@ -186,6 +194,12 @@ class Smartnews::Converter::Report
         optional int64  videoP95Views         = 50; // 1876
         optional int64  videoViewableViews    = 51; // 3603
         optional int64  videoViews            = 52; // 4318
+      
+        // imageinfo (creative)
+        optional string imageId               = 53;
+        optional string imageUrl              = 54;
+        optional int64  width                 = 55;
+        optional int64  height                = 56;
       }
       
       message ReportArray {
@@ -255,7 +269,11 @@ class Smartnews::Converter::Report
         video_p75_views Nullable(Int64),
         video_p95_views Nullable(Int64),
         video_viewable_views Nullable(Int64),
-        video_views Nullable(Int64)
+        video_views Nullable(Int64),
+        image_id Nullable(String),
+        image_url Nullable(String),
+        width Nullable(Int64),
+        height Nullable(Int64)
       )
       ENGINE = Log
       EOF

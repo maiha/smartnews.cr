@@ -60,6 +60,26 @@ class Cmds::BatchCmd
                 nil
               )
               vals << tsv_serialize(creative.try{|c| c[key]?}, f)
+            elsif f = Smartnews::Proto::Imageinfo::Fields[key]?
+              cid = insight.creative_id.to_s
+              imageset = creatives_hash[cid].imageset
+              max_size_area = 0
+              if imageset
+                max_size_imageinfo_val = nil
+                imageset.each do |imageinfo|
+                  width = imageinfo.width
+                  height = imageinfo.height
+                  if width.nil? || height.nil?
+                  else
+                    area = width * height
+                    if max_size_area < area
+                      max_size_area = area
+                      max_size_imageinfo_val = imageinfo.try{|c| c[key]?}
+                    end
+                  end
+                end
+                vals << tsv_serialize(max_size_imageinfo_val, f)
+              end
             else
               raise "[BUG] #{hint} got unknown key: #{key.inspect}"
             end
