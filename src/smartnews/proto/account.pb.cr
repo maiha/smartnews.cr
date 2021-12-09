@@ -5,7 +5,7 @@ module Smartnews
   module Proto
     
     struct Account
-      include Protobuf::Message
+      include ::Protobuf::Message
       
       contract_of "proto2" do
         optional :account_id, :string, 1
@@ -14,7 +14,7 @@ module Smartnews
     end
     
     struct AccountArray
-      include Protobuf::Message
+      include ::Protobuf::Message
       
       contract_of "proto2" do
         repeated :array, Account, 1

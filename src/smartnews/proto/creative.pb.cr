@@ -4,8 +4,19 @@ require "protobuf"
 module Smartnews
   module Proto
     
+    struct Imageinfo
+      include ::Protobuf::Message
+      
+      contract_of "proto2" do
+        optional :image_id, :string, 1
+        optional :image_url, :string, 2
+        optional :width, :int64, 3
+        optional :height, :int64, 4
+      end
+    end
+    
     struct Creative
-      include Protobuf::Message
+      include ::Protobuf::Message
       
       contract_of "proto2" do
         optional :adcreative_id, :string, 1
@@ -24,11 +35,12 @@ module Smartnews
         optional :approval_status, :string, 14
         optional :link_url, :string, 15
         optional :tracking_url, :string, 16
+        repeated :imageset, Imageinfo, 17
       end
     end
     
     struct CreativeArray
-      include Protobuf::Message
+      include ::Protobuf::Message
       
       contract_of "proto2" do
         repeated :array, Creative, 1
