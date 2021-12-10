@@ -69,8 +69,7 @@ class Cmds::BatchCmd
                 imageset.each do |imageinfo|
                   width = imageinfo.width
                   height = imageinfo.height
-                  if width.nil? || height.nil?
-                  else
+                  if width.is_a?(Int64) && height.is_a?(Int64)
                     area = width * height
                     if max_size_area < area
                       max_size_area = area
