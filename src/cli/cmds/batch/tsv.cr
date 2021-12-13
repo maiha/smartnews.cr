@@ -63,16 +63,14 @@ class Cmds::BatchCmd
             elsif f = Smartnews::Proto::Imageinfo::Fields[key]?
               cid = insight.creative_id.to_s
               imageset = creatives_hash[cid].imageset
-              max_size_area = 0
+              max_size_width = 0
               if imageset
                 max_size_imageinfo_val = nil
                 imageset.each do |imageinfo|
                   width = imageinfo.width
-                  height = imageinfo.height
-                  if width.is_a?(Int64) && height.is_a?(Int64)
-                    area = width * height
-                    if max_size_area < area
-                      max_size_area = area
+                  if width.is_a?(Int64)
+                    if max_size_width < width
+                      max_size_width = width
                       max_size_imageinfo_val = imageinfo.try{|c| c[key]?}
                     end
                   end
