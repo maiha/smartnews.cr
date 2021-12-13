@@ -35,6 +35,25 @@ class Cmds::BatchCmd
       cid = c.creative_id || (logger.debug "house(Creative)##{i}: creative_id is missing: #{c.inspect}"; next)
       creatives_hash[cid] = c
     end
+    
+    creatives_max_imageinfo_hash = Hash(String, Smartnews::Proto::Imageinfo).new
+    creatives.each_with_index do |c, i|
+      cid = c.creative_id || (logger.debug "house(Creative)##{i}: creative_id is missing: #{c.inspect}"; next)
+      max_size_width = 0
+      imageset = creatives_hash[cid].imageset
+      if imageset
+        imageset.each do |imageinfo|
+          width = imageinfo.width
+          if width
+            if max_size_width < width
+              max_size_width = width
+              creatives_max_imageinfo_hash[cid] = imageinfo
+            end
+          end
+        end
+      end
+    end
+    
 
     disk.measure {
       buf = CSV.build(quoting: tsv_quote, separator: tsv_sep) do |csv|
@@ -62,21 +81,11 @@ class Cmds::BatchCmd
               vals << tsv_serialize(creative.try{|c| c[key]?}, f)
             elsif f = Smartnews::Proto::Imageinfo::Fields[key]?
               cid = insight.creative_id.to_s
-              imageset = creatives_hash[cid].imageset
-              max_size_width = 0
-              if imageset
-                max_size_imageinfo_val = nil
-                imageset.each do |imageinfo|
-                  width = imageinfo.width
-                  if width
-                    if max_size_width < width
-                      max_size_width = width
-                      max_size_imageinfo_val = imageinfo.try{|c| c[key]?}
-                    end
-                  end
-                end
-                vals << tsv_serialize(max_size_imageinfo_val, f)
-              end
+              creatives_max_imageinfo = creatives_max_imageinfo_hash[cid]? || (
+                logger.warn "creative not found: insight=#{insight.inspect}"
+                nil
+              )
+              vals << tsv_serialize(creatives_max_imageinfo.try{|c| c[key]?}, f)
             else
               raise "[BUG] #{hint} got unknown key: #{key.inspect}"
             end
