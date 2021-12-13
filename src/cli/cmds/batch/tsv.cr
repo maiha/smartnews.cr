@@ -82,7 +82,7 @@ class Cmds::BatchCmd
             elsif f = Smartnews::Proto::Imageinfo::Fields[key]?
               cid = insight.creative_id.to_s
               creatives_max_imageinfo = creatives_max_imageinfo_hash[cid]? || (
-                logger.warn "creative not found: insight=#{insight.inspect}"
+                logger.warn "creatives_max_imageinfo not found: insight=#{insight.inspect}"
                 nil
               )
               vals << tsv_serialize(creatives_max_imageinfo.try{|c| c[key]?}, f)
