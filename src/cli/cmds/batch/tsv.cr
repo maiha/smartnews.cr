@@ -68,7 +68,7 @@ class Cmds::BatchCmd
                 max_size_imageinfo_val = nil
                 imageset.each do |imageinfo|
                   width = imageinfo.width
-                  if width.is_a?(Int64)
+                  if width
                     if max_size_width < width
                       max_size_width = width
                       max_size_imageinfo_val = imageinfo.try{|c| c[key]?}
