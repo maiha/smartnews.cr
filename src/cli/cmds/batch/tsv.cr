@@ -39,11 +39,8 @@ class Cmds::BatchCmd
     creatives_max_imageinfo_hash = Hash(String, Smartnews::Proto::Imageinfo).new
     creatives.each_with_index do |c, i|
       cid = c.creative_id || (logger.debug "house(Creative)##{i}: creative_id is missing: #{c.inspect}"; next)
-      if imageset = creatives_hash[cid].imageset
-        if imageinfo = imageset.sort_by{|i| i.width || 0_i64}.last?
-          creatives_max_imageinfo_hash[cid] = imageinfo
-        end
-      end
+      max = creatives_hash[cid].imageset.try(&.sort_by{|i| i.width || 0_i64}.last?) || next
+      creatives_max_imageinfo_hash[cid] = max
     end
     
 
