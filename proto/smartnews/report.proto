@@ -61,6 +61,12 @@ message Report {
   optional int64  videoP95Views         = 50; // 1876
   optional int64  videoViewableViews    = 51; // 3603
   optional int64  videoViews            = 52; // 4318
+
+  // imageinfo (creative)
+  optional string imageId               = 53;
+  optional string imageUrl              = 54;
+  optional int64  width                 = 55;
+  optional int64  height                = 56;
 }
 
 message ReportArray {

@@ -35,6 +35,14 @@ class Cmds::BatchCmd
       cid = c.creative_id || (logger.debug "house(Creative)##{i}: creative_id is missing: #{c.inspect}"; next)
       creatives_hash[cid] = c
     end
+    
+    creatives_max_imageinfo_hash = Hash(String, Smartnews::Proto::Imageinfo).new
+    creatives.each_with_index do |c, i|
+      cid = c.creative_id || (logger.debug "house(Creative)##{i}: creative_id is missing: #{c.inspect}"; next)
+      max = creatives_hash[cid].imageset.try(&.sort_by{|i| i.width || 0_i64}.last?) || next
+      creatives_max_imageinfo_hash[cid] = max
+    end
+    
 
     disk.measure {
       buf = CSV.build(quoting: tsv_quote, separator: tsv_sep) do |csv|
@@ -60,6 +68,13 @@ class Cmds::BatchCmd
                 nil
               )
               vals << tsv_serialize(creative.try{|c| c[key]?}, f)
+            elsif f = Smartnews::Proto::Imageinfo::Fields[key]?
+              cid = insight.creative_id.to_s
+              creatives_max_imageinfo = creatives_max_imageinfo_hash[cid]? || (
+                logger.warn "creatives_max_imageinfo not found: insight=#{insight.inspect}"
+                nil
+              )
+              vals << tsv_serialize(creatives_max_imageinfo.try{|c| c[key]?}, f)
             else
               raise "[BUG] #{hint} got unknown key: #{key.inspect}"
             end

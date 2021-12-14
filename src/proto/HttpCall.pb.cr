@@ -5,7 +5,7 @@ require "./Datetime.pb.cr"
 
 
 struct HttpCall
-  include Protobuf::Message
+  include ::Protobuf::Message
   
   contract_of "proto2" do
     required :url, :string, 1
@@ -21,7 +21,7 @@ struct HttpCall
 end
 
 struct HttpCallArray
-  include Protobuf::Message
+  include ::Protobuf::Message
   
   contract_of "proto2" do
     repeated :array, HttpCall, 1

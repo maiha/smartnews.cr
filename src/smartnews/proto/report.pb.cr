@@ -5,7 +5,7 @@ module Smartnews
   module Proto
     
     struct Report
-      include Protobuf::Message
+      include ::Protobuf::Message
       
       contract_of "proto2" do
         required :date, :string, 1
@@ -60,11 +60,15 @@ module Smartnews
         optional :video_p95_views, :int64, 50
         optional :video_viewable_views, :int64, 51
         optional :video_views, :int64, 52
+        optional :image_id, :string, 53
+        optional :image_url, :string, 54
+        optional :width, :int64, 55
+        optional :height, :int64, 56
       end
     end
     
     struct ReportArray
-      include Protobuf::Message
+      include ::Protobuf::Message
       
       contract_of "proto2" do
         repeated :array, Report, 1

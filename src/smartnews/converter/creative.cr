@@ -2,6 +2,15 @@ class Smartnews::Converter::Creative
   ######################################################################
   ### JSON
 
+  class Imageinfo
+    JSON.mapping(
+      imageId:         String? ,
+      imageUrl:        String? ,
+      width:           Int64?  ,
+      height:          Int64?  ,
+    )
+  end
+
   JSON.mapping({
     adcreativeId:      String? , # "10000005"
     accountId:         String? , # "10000002"
@@ -19,6 +28,7 @@ class Smartnews::Converter::Creative
     approvalStatus:    String? , # "APPROVED"
     linkUrl:           String? , # "http://creative.smartnews-ads.com"
     trackingUrl:       String? , # "http://foo.trackingsystem.com/?a=b&c=d&e=f"
+    imageset:          {type: Hash(String, Imageinfo), nilable: true},
   })
 
   ######################################################################
@@ -42,7 +52,19 @@ class Smartnews::Converter::Creative
       approval_status: approvalStatus,
       link_url: linkUrl,
       tracking_url: trackingUrl,
+      imageset: imageset.try(&.values.map(&.to_pb)),
     )
+  end
+  
+  class Imageinfo
+    def to_pb
+      Smartnews::Proto::Imageinfo.new(
+        image_id: imageId,
+        image_url: imageUrl,
+        width: width,
+        height: height,
+      )
+    end
   end
 
   def self.protobuf_schema : ProtobufSchema::Schema

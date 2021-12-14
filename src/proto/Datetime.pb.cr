@@ -3,7 +3,7 @@ require "protobuf"
 
 
 struct Datetime
-  include Protobuf::Message
+  include ::Protobuf::Message
   
   contract_of "proto2" do
     required :value, :string, 1
@@ -11,7 +11,7 @@ struct Datetime
 end
 
 struct DatetimeArray
-  include Protobuf::Message
+  include ::Protobuf::Message
   
   contract_of "proto2" do
     repeated :array, Datetime, 1
