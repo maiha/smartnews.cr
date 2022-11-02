@@ -66,7 +66,7 @@ but it can also be used as a tool to generate curl commands.
 $ smartnews api get '/api/v1.0/accounts/1000000/insights -d level=creative' -n
 curl -s -G \
      -H 'X-Auth-Api: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' \
-     https://partners.smartnews-ads.com/api/v1.0/accounts/24270004/insights
+     https://ads.smartnews.com/api/v1.0/accounts/24270004/insights
 ```
 
 ## batch
@@ -104,13 +104,13 @@ $ smartnews pb count recv/20200218/HttpCall
 47
 
 $ smartnews pb list recv/20200218/HttpCall
-[200] GET https://partners.smartnews-ads.com/api/v1.0/accounts
+[200] GET https://ads.smartnews.com/api/v1.0/accounts
 (...snip...)
 
 $ smartnews pb tail -v recv/20200218/HttpCall
 Row 47:
 ──────
-  url          : "https://partners.smartnews-ads.com/api/v1.0/accounts/xxxxxxx/insights?level=creative&since=2020-02-18&until=2020-02-18"
+  url          : "https://ads.smartnews.com/api/v1.0/accounts/xxxxxxx/insights?level=creative&since=2020-02-18&until=2020-02-18"
   method       : "GET"
   header       : ""
   body         : ""
