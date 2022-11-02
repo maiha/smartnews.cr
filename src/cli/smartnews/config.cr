@@ -149,7 +149,7 @@ Smartnews::Config::SAMPLE = <<-EOF
 [api]
 access_token    = ""
 
-url             = "https://partners.smartnews-ads.com"
+url             = "https://ads.smartnews.com"
 logging         = true
 
 dns_timeout     = 3.0

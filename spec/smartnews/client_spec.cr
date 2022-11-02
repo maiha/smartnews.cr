@@ -4,24 +4,24 @@ describe Smartnews::Client do
   describe "#request" do
     it "builds request object" do
       client = Smartnews::Client.new
-      client.request.to_s.should eq("https://partners.smartnews-ads.com/api")
+      client.request.to_s.should eq("https://ads.smartnews.com/api")
     end
 
     it "respects api" do
       client = Smartnews::Client.new(api: "/api/v1.0")
-      client.request.to_s.should eq("https://partners.smartnews-ads.com/api/v1.0")
+      client.request.to_s.should eq("https://ads.smartnews.com/api/v1.0")
 
       client = Smartnews::Client.new
       client.api = Smartnews::Api::Get.new("/api/v1.0/accounts/1000000/insights", data: {"level" => "creative"})
-      client.request.to_s.should eq("https://partners.smartnews-ads.com/api/v1.0/accounts/1000000/insights?level=creative")
+      client.request.to_s.should eq("https://ads.smartnews.com/api/v1.0/accounts/1000000/insights?level=creative")
 
       client = Smartnews::Client.new
       client.api = "/api/v1.0/accounts/1000000/insights -d level=creative"
-      client.request.to_s.should eq("https://partners.smartnews-ads.com/api/v1.0/accounts/1000000/insights?level=creative")
+      client.request.to_s.should eq("https://ads.smartnews.com/api/v1.0/accounts/1000000/insights?level=creative")
 
       client = Smartnews::Client.new
       client.api = Smartnews::Api::Get.parse("/api/v1.0/accounts/1000000/insights -d level=creative")
-      client.request.to_s.should eq("https://partners.smartnews-ads.com/api/v1.0/accounts/1000000/insights?level=creative")
+      client.request.to_s.should eq("https://ads.smartnews.com/api/v1.0/accounts/1000000/insights?level=creative")
     end
 
     it "respects host" do
@@ -37,7 +37,7 @@ describe Smartnews::Client do
         client = Smartnews::Client.new(auth: "xxx")
         client.dryrun!
 
-        expect_raises(Smartnews::Dryrun, "curl -s -G -H 'X-Auth-Api: xxx' -d 'a=1' -d 'b=2' https://partners.smartnews-ads.com/foo") do
+        expect_raises(Smartnews::Dryrun, "curl -s -G -H 'X-Auth-Api: xxx' -d 'a=1' -d 'b=2' https://ads.smartnews.com/foo") do
           client.get("/foo -d a=1 -d b=2")
         end
       end
@@ -48,7 +48,7 @@ describe Smartnews::Client do
         client = Smartnews::Client.new(auth: "xxx")
         client.dryrun!
 
-        expect_raises(Smartnews::Dryrun, "curl -s -G -H 'X-Auth-Api: xxx' -d 'a=x' -d 'b=2' https://partners.smartnews-ads.com/foo") do
+        expect_raises(Smartnews::Dryrun, "curl -s -G -H 'X-Auth-Api: xxx' -d 'a=x' -d 'b=2' https://ads.smartnews.com/foo") do
           client.get("/foo -d a=1 -d b=2", {"a" => "x"})
         end
       end
@@ -73,7 +73,7 @@ describe Smartnews::Client do
       client.auth = "xxx"
       client.dryrun!
 
-      expect_raises(Smartnews::Dryrun, "curl -s -G -H 'X-Auth-Api: xxx' https://partners.smartnews-ads.com/me") do
+      expect_raises(Smartnews::Dryrun, "curl -s -G -H 'X-Auth-Api: xxx' https://ads.smartnews.com/me") do
         client.execute
       end
     end

@@ -1,6 +1,6 @@
 class Smartnews::Host
   def self.default
-    new("https://partners.smartnews-ads.com")
+    new("https://ads.smartnews.com")
   end
 
   var uri : URI
