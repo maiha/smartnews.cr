@@ -30,6 +30,11 @@ message Insight {
   optional int64  videoP95Views         = 27 ; // 1876
   optional int64  videoViewableViews    = 28 ; // 3603
   optional int64  videoViews            = 29 ; // 4318
+  optional int64  viewContent           = 30 ; // 100
+  optional int64  purchase              = 31 ; // 10
+  optional int64  addToCart             = 32 ; // 10
+  optional int64  completeRegistration  = 33 ; // 0
+  optional int64  subscribe             = 34 ; // 0
 }
 
 message InsightArray {

@@ -32,6 +32,11 @@ class Smartnews::Converter::Insight
     videoP95Views:         Int64?   , # 1876
     videoViewableViews:    Int64?   , # 3603
     videoViews:            Int64?   , # 4318
+    viewContent:           Int64?   , # 100
+    purchase:              Int64?   , # 10
+    addToCart:             Int64?   , # 10
+    completeRegistration:  Int64?   , # 0
+    subscribe:             Int64?   , # 0
   })
 
   ######################################################################
@@ -68,6 +73,11 @@ class Smartnews::Converter::Insight
       video_p95_views: videoP95Views,
       video_viewable_views: videoViewableViews,
       video_views: videoViews,
+      view_content: viewContent,
+      purchase: purchase,
+      add_to_cart: addToCart,
+      complete_registration: completeRegistration,
+      subscribe: subscribe,
     )
   end
 
@@ -109,6 +119,11 @@ class Smartnews::Converter::Insight
         optional int64  videoP95Views         = 27 ; // 1876
         optional int64  videoViewableViews    = 28 ; // 3603
         optional int64  videoViews            = 29 ; // 4318
+        optional int64  viewContent           = 30 ; // 100
+        optional int64  purchase              = 31 ; // 10
+        optional int64  addToCart             = 32 ; // 10
+        optional int64  completeRegistration  = 33 ; // 0
+        optional int64  subscribe             = 34 ; // 0
       }
       
       message InsightArray {
@@ -155,7 +170,12 @@ class Smartnews::Converter::Insight
         video_p75_views Nullable(Int64),
         video_p95_views Nullable(Int64),
         video_viewable_views Nullable(Int64),
-        video_views Nullable(Int64)
+        video_views Nullable(Int64),
+        view_content Nullable(Int64),
+        purchase Nullable(Int64),
+        add_to_cart Nullable(Int64),
+        complete_registration Nullable(Int64),
+        subscribe Nullable(Int64)
       )
       ENGINE = Log
       EOF

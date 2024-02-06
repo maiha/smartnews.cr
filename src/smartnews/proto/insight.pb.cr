@@ -37,6 +37,11 @@ module Smartnews
         optional :video_p95_views, :int64, 27
         optional :video_viewable_views, :int64, 28
         optional :video_views, :int64, 29
+        optional :view_content, :int64, 30
+        optional :purchase, :int64, 31
+        optional :add_to_cart, :int64, 32
+        optional :complete_registration, :int64, 33
+        optional :subscribe, :int64, 34
       end
     end
     
