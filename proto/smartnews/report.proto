@@ -67,6 +67,13 @@ message Report {
   optional string imageUrl              = 54;
   optional int64  width                 = 55;
   optional int64  height                = 56;
+  
+  // insight
+  optional int64  viewContent           = 57;
+  optional int64  purchase              = 58;
+  optional int64  addToCart             = 59;
+  optional int64  completeRegistration  = 60;
+  optional int64  subscribe             = 61;
 }
 
 message ReportArray {

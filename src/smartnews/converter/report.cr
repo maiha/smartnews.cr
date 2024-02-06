@@ -59,6 +59,11 @@ class Smartnews::Converter::Report
     imageUrl:              String?  , #
     width:                 Int64?   , #
     height:                Int64?   , #
+    viewContent:           Int64?   , #
+    purchase:              Int64?   , #
+    addToCart:             Int64?   , #
+    completeRegistration:  Int64?   , #
+    subscribe:             Int64?   , #
   })
 
   ######################################################################
@@ -122,6 +127,11 @@ class Smartnews::Converter::Report
       image_url: imageUrl,
       width: width,
       height: height,
+      view_content: viewContent,
+      purchase: purchase,
+      add_to_cart: addToCart,
+      complete_registration: completeRegistration,
+      subscribe: subscribe
     )
   end
 
@@ -200,6 +210,13 @@ class Smartnews::Converter::Report
         optional string imageUrl              = 54;
         optional int64  width                 = 55;
         optional int64  height                = 56;
+        
+        // insight
+        optional int64  viewContent           = 57;
+        optional int64  purchase              = 58;
+        optional int64  addToCart             = 59;
+        optional int64  completeRegistration  = 60;
+        optional int64  subscribe             = 61;
       }
       
       message ReportArray {
@@ -273,7 +290,12 @@ class Smartnews::Converter::Report
         image_id Nullable(String),
         image_url Nullable(String),
         width Nullable(Int64),
-        height Nullable(Int64)
+        height Nullable(Int64),
+        view_content Nullable(Int64),
+        purchase Nullable(Int64),
+        add_to_cart Nullable(Int64),
+        complete_registration Nullable(Int64),
+        subscribe Nullable(Int64)
       )
       ENGINE = Log
       EOF

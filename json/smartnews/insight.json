@@ -27,5 +27,10 @@
   "videoP75Views": 2266,
   "videoP95Views": 1876,
   "videoViewableViews": 3603,
-  "videoViews": 4318
+  "videoViews": 4318,
+  "viewContent": 100,
+  "purchase": 10,
+  "addToCart": 10,
+  "completeRegistration": 0,
+  "subscribe": 0
 }

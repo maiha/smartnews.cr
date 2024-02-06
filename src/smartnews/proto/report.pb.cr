@@ -64,6 +64,11 @@ module Smartnews
         optional :image_url, :string, 54
         optional :width, :int64, 55
         optional :height, :int64, 56
+        optional :view_content, :int64, 57
+        optional :purchase, :int64, 58
+        optional :add_to_cart, :int64, 59
+        optional :complete_registration, :int64, 60
+        optional :subscribe, :int64, 61
       end
     end
     
