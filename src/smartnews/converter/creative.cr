@@ -28,7 +28,7 @@ class Smartnews::Converter::Creative
     approvalStatus:    String? , # "APPROVED"
     linkUrl:           String? , # "http://creative.smartnews-ads.com"
     trackingUrl:       String? , # "http://foo.trackingsystem.com/?a=b&c=d&e=f"
-    imageset:          {type: Hash(String, Imageinfo), nilable: true},
+    imageset:          {type: Hash(String, Imageinfo?), nilable: true},
   })
 
   ######################################################################
@@ -52,7 +52,7 @@ class Smartnews::Converter::Creative
       approval_status: approvalStatus,
       link_url: linkUrl,
       tracking_url: trackingUrl,
-      imageset: imageset.try(&.values.map(&.to_pb)),
+      imageset: imageset.try(&.values.compact.map(&.to_pb)),
     )
   end
   
