@@ -1,6 +1,8 @@
 ## Generated from smartnews/campaign.proto
 require "protobuf"
 
+require "./amv2.pb.cr"
+
 module Smartnews
   module Proto
     
@@ -26,6 +28,7 @@ module Smartnews
         optional :status, :string, 16
         optional :approval_status, :string, 17
         optional :updated_at, :string, 18
+        optional :amv2, Amv2, 19
       end
     end
     

@@ -1,5 +1,7 @@
 syntax = "proto2";
 
+import "amv2.proto";
+
 message Campaign {
   optional string actionType     = 1  ; // "WEBSITE_CONVERSION"
   optional string name           = 2  ; // "SmartNews Installs 7/12"
@@ -19,6 +21,7 @@ message Campaign {
   optional string status         = 16 ; // "NORMAL"
   optional string approvalStatus = 17 ; // "APPROVED"
   optional string updatedAt      = 18 ; // "2020-01-31T02:02:03Z"
+  optional Amv2   amv2           = 19 ; 
 }
 
 message CampaignArray {
