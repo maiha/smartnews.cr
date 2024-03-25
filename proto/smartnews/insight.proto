@@ -1,5 +1,12 @@
 syntax = "proto2";
 
+message AmV2 {
+  optional string campaignId            = 1;
+  optional string adGroupId             = 2;
+  optional string campaignName          = 3;
+  optional string adGroupName           = 4;
+}
+
 message Insight {
   optional string accountId             = 1  ; // "1000000"
   optional string campaignId            = 2  ; // "1000003"
@@ -35,6 +42,7 @@ message Insight {
   optional int64  addToCart             = 32 ; // 10
   optional int64  completeRegistration  = 33 ; // 0
   optional int64  subscribe             = 34 ; // 0
+  optional int64  amv2                  = 35 ; 
 }
 
 message InsightArray {

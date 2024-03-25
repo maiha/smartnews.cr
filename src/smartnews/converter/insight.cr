@@ -1,6 +1,14 @@
 class Smartnews::Converter::Insight
   ######################################################################
   ### JSON
+  class AmV2
+    JSON.mapping(
+      campaignId:          String?  ,
+      adGroupId:           String?  ,
+      campaignName:        String?  ,
+      adGroupName:         String?  ,
+    )
+  end
 
   JSON.mapping({
     accountId:             String?  , # "1000000"
@@ -37,6 +45,7 @@ class Smartnews::Converter::Insight
     addToCart:             Int64?   , # 10
     completeRegistration:  Int64?   , # 0
     subscribe:             Int64?   , # 0
+    amV2:                  AmV2?
   })
 
   ######################################################################
@@ -78,7 +87,19 @@ class Smartnews::Converter::Insight
       add_to_cart: addToCart,
       complete_registration: completeRegistration,
       subscribe: subscribe,
+      amV2: amV2.try(&.to_pb),
     )
+  end
+
+  class AmV2
+    def to_pb
+      Smartnews::Proto::AmV2.new(
+        campaign_id: campaignId,
+        ad_group_id: adGroupId,
+        campaign_name: campaignName,
+        ad_group_name: adGroupName,
+      )
+    end
   end
 
   def self.protobuf_schema : ProtobufSchema::Schema
@@ -124,6 +145,7 @@ class Smartnews::Converter::Insight
         optional int64  addToCart             = 32 ; // 10
         optional int64  completeRegistration  = 33 ; // 0
         optional int64  subscribe             = 34 ; // 0
+        repeated AmV2   amV2                  = 35 ; // 0
       }
       
       message InsightArray {

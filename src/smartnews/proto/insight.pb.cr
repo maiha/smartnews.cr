@@ -4,6 +4,17 @@ require "protobuf"
 module Smartnews
   module Proto
     
+    struct AmV2
+      include ::Protobuf::Message
+      
+      contract_of "proto2" do
+        optional :campaign_id, :string, 1
+        optional :ad_group_id, :string, 2
+        optional :campaign_name, :string, 3
+        optional :ad_group_name, :string, 4
+      end
+    end
+    
     struct Insight
       include ::Protobuf::Message
       
@@ -42,6 +53,7 @@ module Smartnews
         optional :add_to_cart, :int64, 32
         optional :complete_registration, :int64, 33
         optional :subscribe, :int64, 34
+        optional :amV2, AmV2, 35
       end
     end
     

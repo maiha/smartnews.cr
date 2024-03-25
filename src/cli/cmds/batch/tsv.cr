@@ -53,7 +53,11 @@ class Cmds::BatchCmd
             if key == "date"
               vals << partition_key
             elsif f = Smartnews::Proto::Insight::Fields[key]?
-              vals << tsv_serialize(insight[key]?, f)
+              if f_amv2 = Smartnews::Proto::AmV2::Fields[key]?
+                vals << tsv_serialize(insight[key]?, f_amv2)
+              else
+                vals << tsv_serialize(insight[key]?, f)
+              end
             elsif f = Smartnews::Proto::Campaign::Fields[key]?
               cid = insight.campaign_id.to_s
               campaign = campaigns_hash[cid]? || (
