@@ -69,6 +69,12 @@ module Smartnews
         optional :add_to_cart, :int64, 59
         optional :complete_registration, :int64, 60
         optional :subscribe, :int64, 61
+        optional :amv2_campaign_id, :string, 62
+        optional :amv2_campaign_name, :string, 63
+        optional :amv2_ad_group_id, :string, 64
+        optional :amv2_ad_group_name, :string, 65
+        optional :amv2_campaign_spending_limit, :int64, 66
+        optional :amv2_campaign_daily_budget, :int64, 67
       end
     end
     

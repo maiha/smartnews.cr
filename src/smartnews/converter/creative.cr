@@ -1,3 +1,5 @@
+### This file is maintained by hands.
+
 class Smartnews::Converter::Creative
   ######################################################################
   ### JSON

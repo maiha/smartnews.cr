@@ -66,6 +66,9 @@ gen: proto converter
 .PHONY: converter
 converter: $(CONVERTERS)
 
+src/smartnews/converter/creative.cr:
+	# ### This file is maintained by hands.
+
 src/smartnews/converter/%.cr:proto/smartnews/%.proto $(GENERATOR)
 	@if ! which "$(GENERATOR)" > /dev/null ; then echo "GENERATOR not set"; exit 1; fi
 	$(GENERATOR) pb schema2converter $< "Smartnews::" > $@
@@ -79,7 +82,7 @@ proto: $(subst json,proto,$(JSON_FILES))
 	@mkdir -p src/proto
 	protoc -I proto --crystal_out src/proto proto/*.proto
 	@mkdir -p src/smartnews/proto
-	PROTOBUF_NS=Smartnews::Proto protoc -I proto -I proto/smartnews --crystal_out src/smartnews/proto proto/smartnews/*.proto
+	for pb in proto/smartnews/*.proto; do PROTOBUF_NS=Smartnews::Proto protoc -I proto -I proto/smartnews --crystal_out src/smartnews/proto $$pb; done
 
 ######################################################################
 ### versioning

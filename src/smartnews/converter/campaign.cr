@@ -21,6 +21,7 @@ class Smartnews::Converter::Campaign
     status:         String? , # "NORMAL"
     approvalStatus: String? , # "APPROVED"
     updatedAt:      String? , # "2020-01-31T02:02:03Z"
+    amv2:           Smartnews::Proto::Amv2? , #
   })
 
   ######################################################################
@@ -46,6 +47,7 @@ class Smartnews::Converter::Campaign
       status: status,
       approval_status: approvalStatus,
       updated_at: updatedAt,
+      amv2: amv2,
     )
   end
 
@@ -56,6 +58,8 @@ class Smartnews::Converter::Campaign
   def self.protobuf_schema_string : String
     <<-EOF
       syntax = "proto2";
+      
+      import "amv2.proto";
       
       message Campaign {
         optional string actionType     = 1  ; // "WEBSITE_CONVERSION"
@@ -76,6 +80,7 @@ class Smartnews::Converter::Campaign
         optional string status         = 16 ; // "NORMAL"
         optional string approvalStatus = 17 ; // "APPROVED"
         optional string updatedAt      = 18 ; // "2020-01-31T02:02:03Z"
+        optional Amv2   amv2           = 19 ; 
       }
       
       message CampaignArray {
@@ -111,7 +116,8 @@ class Smartnews::Converter::Campaign
         creative_type Nullable(String),
         status Nullable(String),
         approval_status Nullable(String),
-        updated_at Nullable(String)
+        updated_at Nullable(String),
+        amv2 Nullable(String)
       )
       ENGINE = Log
       EOF
