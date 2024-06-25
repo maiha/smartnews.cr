@@ -21,7 +21,7 @@ message Campaign {
   optional string status         = 16 ; // "NORMAL"
   optional string approvalStatus = 17 ; // "APPROVED"
   optional string updatedAt      = 18 ; // "2020-01-31T02:02:03Z"
-  optional Amv2   amv2           = 19 ; 
+  optional Amv2   amV2           = 19 ; 
 }
 
 message CampaignArray {

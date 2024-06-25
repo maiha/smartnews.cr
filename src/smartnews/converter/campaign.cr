@@ -21,7 +21,7 @@ class Smartnews::Converter::Campaign
     status:         String? , # "NORMAL"
     approvalStatus: String? , # "APPROVED"
     updatedAt:      String? , # "2020-01-31T02:02:03Z"
-    amv2:           Smartnews::Proto::Amv2? , #
+    amV2:           Smartnews::Converter::Amv2? , #
   })
 
   ######################################################################
@@ -47,7 +47,7 @@ class Smartnews::Converter::Campaign
       status: status,
       approval_status: approvalStatus,
       updated_at: updatedAt,
-      amv2: amv2,
+      amv2: amV2.try(&.to_pb),
     )
   end
 
