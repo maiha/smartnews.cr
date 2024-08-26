@@ -1,6 +1,8 @@
 ## Generated from smartnews/insight.proto
 require "protobuf"
 
+require "./amv2.pb.cr"
+
 module Smartnews
   module Proto
     
@@ -42,6 +44,7 @@ module Smartnews
         optional :add_to_cart, :int64, 32
         optional :complete_registration, :int64, 33
         optional :subscribe, :int64, 34
+        optional :amv2, Amv2, 35
       end
     end
     
@@ -52,5 +55,5 @@ module Smartnews
         repeated :array, Insight, 1
       end
     end
-    end
   end
+end
