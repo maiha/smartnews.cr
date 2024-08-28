@@ -75,7 +75,7 @@ message Report {
   optional int64  completeRegistration  = 60;
   optional int64  subscribe             = 61;
 
-  // campaign.amV2
+  // insight.amV2
   optional string amv2_campaignId            = 62; // "1000004"
   optional string amv2_campaignName          = 63; // "test"
   optional string amv2_adGroupId             = 64; // "1000003"

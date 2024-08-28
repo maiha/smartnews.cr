@@ -43,13 +43,6 @@ class Cmds::BatchCmd
       creatives_max_imageinfo_hash[cid] = max
     end
 
-    amv2_hash = Hash(String, Smartnews::Proto::Amv2).new # key: v1.campaignId (= v2.adGroupId)
-    campaigns.each_with_index do |c, i|
-      amv2 = c.amv2 || next
-      ad_group_id = amv2.ad_group_id || next
-      amv2_hash[ad_group_id] = amv2
-    end
-
 
     disk.measure {
       buf = CSV.build(quoting: tsv_quote, separator: tsv_sep) do |csv|
@@ -57,28 +50,14 @@ class Cmds::BatchCmd
         insights.each do |insight|
           
           vals = Array(String).new
-          amv2 = amv2_hash[insight.campaign_id.to_s]? || Smartnews::Proto::Amv2.new
-          insight_amv2 = Smartnews::Proto::Amv2.new
+          amv2 = insight.amv2 || Smartnews::Proto::Amv2.new
  
-          insights.each_with_index do |c, i|
-            if c.amv2
-              _amv2 = c.amv2 || next
-              ad_group_id = _amv2.ad_group_id || next
-              if ad_group_id == insight.campaign_id
-                insight_amv2 = _amv2
-              end
-            end
-          end
-          
           keys.each do |key|
             if key == "date"
               vals << partition_key
             elsif key =~ /^amv2_(.*)$/
               _key = $1
               _val = amv2[_key]?
-              if insight_amv2[_key]
-                _val = insight_amv2[_key]
-              end
               if f = Smartnews::Proto::Report::Fields[key]?
                 vals << tsv_serialize(_val, f)
               else
