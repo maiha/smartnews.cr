@@ -75,13 +75,13 @@ message Report {
   optional int64  completeRegistration  = 60;
   optional int64  subscribe             = 61;
 
-  // insight.amV2
+  // campaign.amV2
   optional string amv2_campaignId            = 62; // "1000004"
   optional string amv2_campaignName          = 63; // "test"
   optional string amv2_adGroupId             = 64; // "1000003"
   optional string amv2_adGroupName           = 65; // "test"
-  //optional int64  amv2_campaignSpendingLimit = 66; // 100
-  //optional int64  amv2_campaignDailyBudget   = 67; // 100
+  optional int64  amv2_campaignSpendingLimit = 66; // 100
+  optional int64  amv2_campaignDailyBudget   = 67; // 100
 
   // insight.amV2
   optional bool   amv2_isMigratedFromV1      = 68;
