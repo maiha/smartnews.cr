@@ -64,11 +64,7 @@ class Cmds::BatchCmd
               vals << partition_key
             elsif key =~ /^amv2_(.*)$/
               _key = $1
-              if campaign_amv2[_key]?
-                _val = campaign_amv2[_key]?
-              else
-                _val = insight_amv2[_key]?
-              end
+              _val = campaign_amv2[_key]? || insight_amv2[_key]?
               if f = Smartnews::Proto::Report::Fields[key]?
                 vals << tsv_serialize(_val, f)
               else
