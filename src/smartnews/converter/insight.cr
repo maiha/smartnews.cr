@@ -37,6 +37,7 @@ class Smartnews::Converter::Insight
     addToCart:             Int64?   , # 10
     completeRegistration:  Int64?   , # 0
     subscribe:             Int64?   , # 0
+    amV2:                  Smartnews::Converter::Amv2? , #
   })
 
   ######################################################################
@@ -78,6 +79,7 @@ class Smartnews::Converter::Insight
       add_to_cart: addToCart,
       complete_registration: completeRegistration,
       subscribe: subscribe,
+      amv2: amV2.try(&.to_pb),
     )
   end
 
@@ -88,6 +90,8 @@ class Smartnews::Converter::Insight
   def self.protobuf_schema_string : String
     <<-EOF
       syntax = "proto2";
+      
+      import "amv2.proto";
       
       message Insight {
         optional string accountId             = 1  ; // "1000000"
@@ -124,6 +128,7 @@ class Smartnews::Converter::Insight
         optional int64  addToCart             = 32 ; // 10
         optional int64  completeRegistration  = 33 ; // 0
         optional int64  subscribe             = 34 ; // 0
+        optional Amv2   amv2                  = 35 ;
       }
       
       message InsightArray {
@@ -175,7 +180,8 @@ class Smartnews::Converter::Insight
         purchase Nullable(Int64),
         add_to_cart Nullable(Int64),
         complete_registration Nullable(Int64),
-        subscribe Nullable(Int64)
+        subscribe Nullable(Int64),
+        amv2 Nullable(String)
       )
       ENGINE = Log
       EOF

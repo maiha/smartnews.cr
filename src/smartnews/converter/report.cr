@@ -70,6 +70,76 @@ class Smartnews::Converter::Report
     amv2_adGroupName:           String?  , # "test"
     amv2_campaignSpendingLimit: Int64?   , # 100
     amv2_campaignDailyBudget:   Int64?   , # 100
+    amv2_isMigratedFromV1:      Bool?    ,
+    amv2_addToCart:             Int64?   ,
+    amv2_purchase:              Int64?   ,
+    amv2_subscribe:             Int64?   ,
+    amv2_completeRegistration:  Int64?   ,
+    amv2_viewContent:           Int64?   ,
+    amv2_addToCartCpa:          Float64? ,
+    amv2_addToCartCvr:          Float64? ,
+    amv2_purchaseCpa:           Float64? ,
+    amv2_purchaseCvr:           Float64? ,
+    amv2_subscribeCpa:          Float64? ,
+    amv2_subscribeCvr:          Float64? ,
+    amv2_completeRegistrationCpa: Float64? ,
+    amv2_completeRegistrationCvr: Float64? ,
+    amv2_viewContentCpa:        Float64? ,
+    amv2_viewContentCvr:        Float64? ,
+    amv2_initiate_checkout:     Int64?   ,
+    amv2_initiate_checkout_cpa: Float64? ,
+    amv2_initiate_checkout_cvr: Float64? ,
+    amv2_submit_form:           Int64?   ,
+    amv2_submit_form_cpa:       Float64? ,
+    amv2_submit_form_cvr:       Float64? ,
+    amv2_contact:               Int64?   ,
+    amv2_contact_cpa:           Float64? ,
+    amv2_contact_cvr:           Float64? ,
+    amv2_sign_up:               Int64?   ,
+    amv2_sign_up_cpa:           Float64? ,
+    amv2_sign_up_cvr:           Float64? ,
+    amv2_add_payment_info:      Int64?   ,
+    amv2_add_payment_info_cpa:  Float64? ,
+    amv2_add_payment_info_cvr:  Float64? ,
+    amv2_add_to_wish_list:      Int64?   ,
+    amv2_add_to_wish_list_cpa:  Float64? ,
+    amv2_add_to_wish_list_cvr:  Float64? ,
+    amv2_visit_cart:            Int64?   ,
+    amv2_visit_cart_cpa:        Float64? ,
+    amv2_visit_cart_cvr:        Float64? ,
+    amv2_customize_product:     Int64?   ,
+    amv2_customize_product_cpa: Float64? ,
+    amv2_customize_product_cvr: Float64? ,
+    amv2_search:                Int64?   ,
+    amv2_search_cpa:            Float64? ,
+    amv2_search_cvr:            Float64? ,
+    amv2_booking:               Int64?   ,
+    amv2_booking_cpa:           Float64? ,
+    amv2_booking_cvr:           Float64? ,
+    amv2_download:              Int64?   ,
+    amv2_download_cpa:          Float64? ,
+    amv2_download_cvr:          Float64? ,
+    amv2_start_trial:           Int64?   ,
+    amv2_start_trial_cpa:       Float64? ,
+    amv2_start_trial_cvr:       Float64? ,
+    amv2_share:                 Int64?   ,
+    amv2_share_cpa:             Float64? ,
+    amv2_share_cvr:             Float64? ,
+    amv2_login:                 Int64?   ,
+    amv2_login_cpa:             Float64? ,
+    amv2_login_cvr:             Float64? ,
+    amv2_donate:                Int64?   ,
+    amv2_donate_cpa:            Float64? ,
+    amv2_donate_cvr:            Float64? ,
+    amv2_find_location:         Int64?   ,
+    amv2_find_location_cpa:     Float64? ,
+    amv2_find_location_cvr:     Float64? ,
+    amv2_time_spent:            Int64?   ,
+    amv2_time_spent_cpa:        Float64? ,
+    amv2_time_spent_cvr:        Float64? ,
+    amv2_install:               Int64?   ,
+    amv2_install_cpa:           Float64? ,
+    amv2_install_cvr:           Float64? ,
   })
 
   ######################################################################
@@ -144,6 +214,76 @@ class Smartnews::Converter::Report
       amv2_ad_group_name: amv2_adGroupName,
       amv2_campaign_spending_limit: amv2_campaignSpendingLimit,
       amv2_campaign_daily_budget: amv2_campaignDailyBudget,
+      amv2_is_migrated_from_v1: amv2_isMigratedFromV1,
+      amv2_add_to_cart: amv2_addToCart,
+      amv2_purchase: amv2_purchase,
+      amv2_subscribe: amv2_subscribe,
+      amv2_complete_registration: amv2_completeRegistration,
+      amv2_view_content: amv2_viewContent,
+      amv2_add_to_cart_cpa: amv2_addToCartCpa,
+      amv2_add_to_cart_cvr: amv2_addToCartCvr,
+      amv2_purchase_cpa: amv2_purchaseCpa,
+      amv2_purchase_cvr: amv2_purchaseCvr,
+      amv2_subscribe_cpa: amv2_subscribeCpa,
+      amv2_subscribe_cvr: amv2_subscribeCvr,
+      amv2_complete_registration_cpa: amv2_completeRegistrationCpa,
+      amv2_complete_registration_cvr: amv2_completeRegistrationCvr,
+      amv2_view_content_cpa: amv2_viewContentCpa,
+      amv2_view_content_cvr: amv2_viewContentCvr,
+      amv2_initiate_checkout: amv2_initiateCheckout,
+      amv2_initiate_checkout_cpa: amv2_initiateCheckoutCpa,
+      amv2_initiate_checkout_cvr: amv2_initiateCheckoutCvr,
+      amv2_submit_form: amv2_submitForm,
+      amv2_submit_form_cpa: amv2_submitFormCpa,
+      amv2_submit_form_cvr: amv2_submitFormCvr,
+      amv2_contact: amv2_contact,
+      amv2_contact_cpa: amv2_contactCpa,
+      amv2_contact_cvr: amv2_contactCvr,
+      amv2_sign_up: amv2_signUp,
+      amv2_sign_up_cpa: amv2_signUpCpa,
+      amv2_sign_up_cvr: amv2_signUpCvr,
+      amv2_add_payment_info: amv2_addPaymentInfo,
+      amv2_add_payment_info_cpa: amv2_addPaymentInfoCpa,
+      amv2_add_payment_info_cvr: amv2_addPaymentInfoCvr,
+      amv2_add_to_wish_list: amv2_addToWishList,
+      amv2_add_to_wish_list_cpa: amv2_addToWishListCpa,
+      amv2_add_to_wish_list_cvr: amv2_addToWishListCvr,
+      amv2_visit_cart: amv2_visitCart,
+      amv2_visit_cart_cpa: amv2_visitCartCpa,
+      amv2_visit_cart_cvr: amv2_visitCartCvr,
+      amv2_customize_product: amv2_customizeProduct,
+      amv2_customize_product_cpa: amv2_customizeProductCpa,
+      amv2_customize_product_cvr: amv2_customizeProductCvr,
+      amv2_search: amv2_search,
+      amv2_search_cpa: amv2_searchCpa,
+      amv2_search_cvr: amv2_searchCvr,
+      amv2_booking: amv2_booking,
+      amv2_booking_cpa: amv2_bookingCpa,
+      amv2_booking_cvr: amv2_bookingCvr,
+      amv2_download: amv2_download,
+      amv2_download_cpa: amv2_downloadCpa,
+      amv2_download_cvr: amv2_downloadCvr,
+      amv2_start_trial: amv2_startTrial,
+      amv2_start_trial_cpa: amv2_startTrialCpa,
+      amv2_start_trial_cvr: amv2_startTrialCvr,
+      amv2_share: amv2_share,
+      amv2_share_cpa: amv2_shareCpa,
+      amv2_share_cvr: amv2_shareCvr,
+      amv2_login: amv2_login,
+      amv2_login_cpa: amv2_loginCpa,
+      amv2_login_cvr: amv2_loginCvr,
+      amv2_donate: amv2_donate,
+      amv2_donate_cpa: amv2_donateCpa,
+      amv2_donate_cvr: amv2_donateCvr,
+      amv2_find_location: amv2_findLocation,
+      amv2_find_location_cpa: amv2_findLocationCpa,
+      amv2_find_location_cvr: amv2_findLocationCvr,
+      amv2_time_spent: amv2_timeSpent,
+      amv2_time_spent_cpa: amv2_timeSpentCpa,
+      amv2_time_spent_cvr: amv2_timeSpentCvr,
+      amv2_install: amv2_install,
+      amv2_install_cpa: amv2_installCpa,
+      amv2_install_cvr: amv2_installCvr,
     )
   end
 
@@ -237,6 +377,78 @@ class Smartnews::Converter::Report
         optional string amv2_adGroupName           = 65; // "test"
         optional int64  amv2_campaignSpendingLimit = 66; // 100
         optional int64  amv2_campaignDailyBudget   = 67; // 100
+        
+        // insight.amV2
+        optional bool   amv2_isMigratedFromV1      = 68;
+        optional int64  amv2_addToCart             = 69;
+        optional int64  amv2_purchase              = 70;
+        optional int64  amv2_subscribe             = 71;
+        optional int64  amv2_completeRegistration  = 72;
+        optional int64  amv2_viewContent           = 73;
+        optional double amv2_addToCartCpa          = 74;
+        optional double amv2_addToCartCvr          = 75;
+        optional double amv2_purchaseCpa           = 76;
+        optional double amv2_purchaseCvr           = 77;
+        optional double amv2_subscribeCpa          = 78;
+        optional double amv2_subscribeCvr          = 79;
+        optional double amv2_completeRegistrationCpa = 80;
+        optional double amv2_completeRegistrationCvr = 81;
+        optional double amv2_viewContentCpa        = 82;
+        optional double amv2_viewContentCvr        = 83;
+        optional int64  amv2_initiateCheckout      = 84;
+        optional double amv2_initiateCheckoutCpa   = 85;
+        optional double amv2_initiateCheckoutCvr   = 86;
+        optional int64  amv2_submitForm            = 87;
+        optional double amv2_submitFormCpa         = 88;
+        optional double amv2_submitFormCvr         = 89;
+        optional int64  amv2_contact               = 90;
+        optional double amv2_contactCpa            = 91;
+        optional double amv2_contactCvr            = 92;
+        optional int64  amv2_signUp                = 93;
+        optional double amv2_signUpCpa             = 94;
+        optional double amv2_signUpCvr             = 95;
+        optional int64  amv2_addPaymentInfo        = 96;
+        optional double amv2_addPaymentInfoCpa     = 97;
+        optional double amv2_addPaymentInfoCvr     = 98;
+        optional int64  amv2_addToWishList         = 99;
+        optional double amv2_addToWishListCpa      = 100;
+        optional double amv2_addToWishListCvr      = 101;
+        optional int64  amv2_visitCart             = 102;
+        optional double amv2_visitCartCpa          = 103;
+        optional double amv2_visitCartCvr          = 104;
+        optional int64  amv2_customizeProduct      = 105;
+        optional double amv2_customizeProductCpa   = 106;
+        optional double amv2_customizeProductCvr   = 107;
+        optional int64  amv2_search                = 108;
+        optional double amv2_searchCpa             = 109;
+        optional double amv2_searchCvr             = 110;
+        optional int64  amv2_booking               = 111;
+        optional double amv2_bookingCpa            = 112;
+        optional double amv2_bookingCvr            = 113;
+        optional int64  amv2_download              = 114;
+        optional double amv2_downloadCpa           = 115;
+        optional double amv2_downloadCvr           = 116;
+        optional int64  amv2_startTrial            = 117;
+        optional double amv2_startTrialCpa         = 118;
+        optional double amv2_startTrialCvr         = 119;
+        optional int64  amv2_share                 = 120;
+        optional double amv2_shareCpa              = 121;
+        optional double amv2_shareCvr              = 122;
+        optional int64  amv2_login                 = 123;
+        optional double amv2_loginCpa              = 124;
+        optional double amv2_loginCvr              = 125;
+        optional int64  amv2_donate                = 126;
+        optional double amv2_donateCpa             = 127;
+        optional double amv2_donateCvr             = 128;
+        optional int64  amv2_findLocation          = 129;
+        optional double amv2_findLocationCpa       = 130;
+        optional double amv2_findLocationCvr       = 131;
+        optional int64  amv2_timeSpent             = 132;
+        optional double amv2_timeSpentCpa          = 133;
+        optional double amv2_timeSpentCvr          = 134;
+        optional int64  amv2_install               = 135;
+        optional double amv2_installCpa            = 136;
+        optional double amv2_installCvr            = 137;
       }
       
       message ReportArray {
@@ -321,7 +533,77 @@ class Smartnews::Converter::Report
         amv2_ad_group_id Nullable(String),
         amv2_ad_group_name Nullable(String),
         amv2_campaign_spending_limit Nullable(Int64),
-        amv2_campaign_daily_budget Nullable(Int64)
+        amv2_campaign_daily_budget Nullable(Int64),
+        amv2_is_migrated_from_v1 Nullable(UInt8),
+        amv2_add_to_cart Nullable(Int64),
+        amv2_purchase Nullable(Int64),
+        amv2_subscribe Nullable(Int64),
+        amv2_complete_registration Nullable(Int64),
+        amv2_view_content Nullable(Int64),
+        amv2_add_to_cart_cpa Nullable(Float64),
+        amv2_add_to_cart_cvr Nullable(Float64),
+        amv2_purchase_cpa Nullable(Float64),
+        amv2_purchase_cvr Nullable(Float64),
+        amv2_subscribe_cpa Nullable(Float64),
+        amv2_subscribe_cvr Nullable(Float64),
+        amv2_complete_registration_cpa Nullable(Float64),
+        amv2_complete_registration_cvr Nullable(Float64),
+        amv2_view_content_cpa Nullable(Float64),
+        amv2_view_content_cvr Nullable(Float64),
+        amv2_initiate_checkout Nullable(Int64),
+        amv2_initiate_checkout_cpa Nullable(Float64),
+        amv2_initiate_checkout_cvr Nullable(Float64),
+        amv2_submit_form Nullable(Int64),
+        amv2_submit_form_cpa Nullable(Float64),
+        amv2_submit_form_cvr Nullable(Float64),
+        amv2_contact Nullable(Int64),
+        amv2_contact_cpa Nullable(Float64),
+        amv2_contact_cvr Nullable(Float64),
+        amv2_sign_up Nullable(Int64),
+        amv2_sign_up_cpa Nullable(Float64),
+        amv2_sign_up_cvr Nullable(Float64),
+        amv2_add_payment_info Nullable(Int64),
+        amv2_add_payment_info_cpa Nullable(Float64),
+        amv2_add_payment_info_cvr Nullable(Float64),
+        amv2_add_to_wish_list Nullable(Int64),
+        amv2_add_to_wish_list_cpa Nullable(Float64),
+        amv2_add_to_wish_list_cvr Nullable(Float64),
+        amv2_visit_cart Nullable(Int64),
+        amv2_visit_cart_cpa Nullable(Float64),
+        amv2_visit_cart_cvr Nullable(Float64),
+        amv2_customize_product Nullable(Int64),
+        amv2_customize_product_cpa Nullable(Float64),
+        amv2_customize_product_cvr Nullable(Float64),
+        amv2_search Nullable(Int64),
+        amv2_search_cpa Nullable(Float64),
+        amv2_search_cvr Nullable(Float64),
+        amv2_booking Nullable(Int64),
+        amv2_booking_cpa Nullable(Float64),
+        amv2_booking_cvr Nullable(Float64),
+        amv2_download Nullable(Int64),
+        amv2_download_cpa Nullable(Float64),
+        amv2_download_cvr Nullable(Float64),
+        amv2_start_trial Nullable(Int64),
+        amv2_start_trial_cpa Nullable(Float64),
+        amv2_start_trial_cvr Nullable(Float64),
+        amv2_share Nullable(Int64),
+        amv2_share_cpa Nullable(Float64),
+        amv2_share_cvr Nullable(Float64),
+        amv2_login Nullable(Int64),
+        amv2_login_cpa Nullable(Float64),
+        amv2_login_cvr Nullable(Float64),
+        amv2_donate Nullable(Int64),
+        amv2_donate_cpa Nullable(Float64),
+        amv2_donate_cvr Nullable(Float64),
+        amv2_find_location Nullable(Int64),
+        amv2_find_location_cpa Nullable(Float64),
+        amv2_find_location_cvr Nullable(Float64),
+        amv2_time_spent Nullable(Int64),
+        amv2_time_spent_cpa Nullable(Float64),
+        amv2_time_spent_cvr Nullable(Float64),
+        amv2_install Nullable(Int64),
+        amv2_install_cpa Nullable(Float64),
+        amv2_install_cvr Nullable(Float64)
       )
       ENGINE = Log
       EOF

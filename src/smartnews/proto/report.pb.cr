@@ -75,6 +75,76 @@ module Smartnews
         optional :amv2_ad_group_name, :string, 65
         optional :amv2_campaign_spending_limit, :int64, 66
         optional :amv2_campaign_daily_budget, :int64, 67
+        optional :amv2_is_migrated_from_v1, :bool, 68
+        optional :amv2_add_to_cart, :int64, 69
+        optional :amv2_purchase, :int64, 70
+        optional :amv2_subscribe, :int64, 71
+        optional :amv2_complete_registration, :int64, 72
+        optional :amv2_view_content, :int64, 73
+        optional :amv2_add_to_cart_cpa, :double, 74
+        optional :amv2_add_to_cart_cvr, :double, 75
+        optional :amv2_purchase_cpa, :double, 76
+        optional :amv2_purchase_cvr, :double, 77
+        optional :amv2_subscribe_cpa, :double, 78
+        optional :amv2_subscribe_cvr, :double, 79
+        optional :amv2_complete_registration_cpa, :double, 80
+        optional :amv2_complete_registration_cvr, :double, 81
+        optional :amv2_view_content_cpa, :double, 82
+        optional :amv2_view_content_cvr, :double, 83
+        optional :amv2_initiate_checkout, :int64, 84
+        optional :amv2_initiate_checkout_cpa, :double, 85
+        optional :amv2_initiate_checkout_cvr, :double, 86
+        optional :amv2_submit_form, :int64, 87
+        optional :amv2_submit_form_cpa, :double, 88
+        optional :amv2_submit_form_cvr, :double, 89
+        optional :amv2_contact, :int64, 90
+        optional :amv2_contact_cpa, :double, 91
+        optional :amv2_contact_cpr, :double, 92
+        optional :amv2_sign_up, :int64, 93
+        optional :amv2_sign_up_cpa, :double, 94
+        optional :amv2_sign_up_cpr, :double, 95
+        optional :amv2_add_payment_info, :int64, 96
+        optional :amv2_add_payment_info_cpa, :double, 97
+        optional :amv2_add_payment_info_cpr, :double, 98
+        optional :amv2_add_to_wish_list, :int64, 99
+        optional :amv2_add_to_wish_list_cpa, :double, 100
+        optional :amv2_add_to_wish_list_cpr, :double, 101
+        optional :amv2_visit_cart, :int64, 102
+        optional :amv2_visit_cart_cpa, :double, 103
+        optional :amv2_visit_cart_cpr, :double, 104
+        optional :amv2_customize_product, :int64, 105
+        optional :amv2_customize_product_cpa, :double, 106
+        optional :amv2_customize_product_cpr, :double, 107
+        optional :amv2_search, :int64, 108
+        optional :amv2_search_cpa, :double, 109
+        optional :amv2_search_cpr, :double, 110
+        optional :amv2_booking, :int64, 111
+        optional :amv2_booking_cpa, :double, 112
+        optional :amv2_booking_cpr, :double, 113
+        optional :amv2_download, :int64, 114
+        optional :amv2_download_cpa, :double, 115
+        optional :amv2_download_cpr, :double, 116
+        optional :amv2_start_trial, :int64, 117
+        optional :amv2_start_trial_cpa, :double, 118
+        optional :amv2_start_trial_cpr, :double, 119
+        optional :amv2_share, :int64, 120
+        optional :amv2_share_cpa, :double, 121
+        optional :amv2_share_cpr, :double, 122
+        optional :amv2_login, :int64, 123
+        optional :amv2_login_cpa, :double, 124
+        optional :amv2_login_cpr, :double, 125
+        optional :amv2_donate, :int64, 126
+        optional :amv2_donate_cpa, :double, 127
+        optional :amv2_donate_cpr, :double, 128
+        optional :amv2_find_location, :int64, 129
+        optional :amv2_find_location_cpa, :double, 130
+        optional :amv2_find_location_cpr, :double, 131
+        optional :amv2_time_spent, :int64, 132
+        optional :amv2_time_spent_cpa, :double, 133
+        optional :amv2_time_spent_cpr, :double, 134
+        optional :amv2_install, :int64, 135
+        optional :amv2_install_cpa, :double, 136
+        optional :amv2_install_cpr, :double, 137
       end
     end
     
@@ -85,5 +155,5 @@ module Smartnews
         repeated :array, Report, 1
       end
     end
-    end
   end
+end
