@@ -39,8 +39,9 @@ clean:
 ######################################################################
 ### testing
 
+# run smartnews first to setup shards
 .PHONY: ci
-ci: check_version_mismatch test smartnews
+ci: check_version_mismatch smartnews test
 
 .PHONY: test
 test: spec
