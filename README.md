@@ -1,4 +1,4 @@
-# smartnews.cr [![Build Status](https://travis-ci.org/maiha/smartnews.cr.svg?branch=master)](https://travis-ci.org/maiha/smartnews.cr)
+# smartnews.cr [![CI](https://github.com/maiha/smartnews.cr/workflows/CI/badge.svg)](https://github.com/maiha/smartnews.cr/actions)
 
 > [Setup](#Setup) | [api](#api) | [batch](#batch) | [pb](#pb) | [Lib](#lib)
 
