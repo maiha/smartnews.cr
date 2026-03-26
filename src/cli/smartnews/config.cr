@@ -59,6 +59,10 @@ class Smartnews::Config < TOML::Config
     ints("batch/publisher_ids")
   end
 
+  def batch_disabled_account_ids : Array(String)
+    self.strs?("batch/disabled_account_ids") || Array(String).new
+  end
+
   private def build_enabled_recvs
     set = Set(String).new
     toml["batch"].as(Hash).each do |k,v|
@@ -164,6 +168,7 @@ gc              = true
 pb_logging      = false
 max_attempts    = 5
 video_metrics   = true
+disabled_account_ids = []
 
 [clickhouse]
 host   = "localhost"
