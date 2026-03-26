@@ -10,12 +10,19 @@ class Cmds::BatchCmd
 
     # iterate job
     done_count = 0
+    skip_count = 0
 
     accounts = house(Smartnews::Proto::Account).load
     accounts.each_with_index do |account, i|
       # account: {"accountId": "1000000", "name": "SmartNews, Inc"}
       aid = account.account_id.to_s
       raise Smartnews::Fatal.new("accounts[#{i}]: missing accountId") if aid.empty?
+
+      if config.batch_disabled_account_ids.includes?(aid)
+        logger.info "[recv] insight: skip disabled account: #{aid}"
+        skip_count += 1
+        next
+      end
 
       room  = house.chdir(File.join(house.dir, "data", aid))
       label = "%s(%s/%s)[%s]" % [hint, i+1, accounts.size, aid]
@@ -28,7 +35,7 @@ class Cmds::BatchCmd
 
     # mark meta.done if all metas have been finished.
     record_count = house.load.size # not use house.count to avoid cached count in meta
-    if done_count == accounts.size
+    if done_count == accounts.size - skip_count
       house.meta[META_DONE] = "got #{record_count}"
     end
 
